@@ -19,6 +19,28 @@ def show_data():
         for i in range(len(buku)):
             print('%i %s' %(i, buku[i]))
 
+def insert_data(): # Menambahkan Buku
+    while(True):
+        buku_baru = input('Judul buku: ')
+        buku.append(buku_baru)
+        while(True):
+            option = (input("Ingin menambahakan lagi? [y/n]: "))
+
+            if option == 'iya' or option == 'ya' or option == 'y':
+                clear_screen()
+                break
+            elif option == 'n':
+                clear_screen()
+                continue
+            else:
+                print('Masukan n atau y')
+                kembali()
+
+
+
+    
+
+
 
 class Menu:
     def menu_pertama():
@@ -37,6 +59,9 @@ class Menu:
                     clear_screen()
                     show_data()
                     kembali()
+                elif p == 4:
+                    clear_screen()
+                    insert_data()
                 else:
                     print('Masukkan angka')
                     kembali()
