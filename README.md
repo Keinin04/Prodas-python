@@ -1,4 +1,7 @@
 Program Perpustakaan
+04/12/2022 
+- menempatkan fungsi pada class nya masing masing
+- pembaruan tampilan menggunakan pandas
 
 03/12/2022
 - Penambahan input buku
