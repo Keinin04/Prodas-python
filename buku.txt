@@ -1,7 +1,7 @@
-Harry Potter,Jk Rowling,20,Rp100
-Naruto,Masashi Kishimoto,20,Rp100
-Kitab Primbon,Ki Joko Bodo,20,Rp100
-Program Komputer,Yusuf Priyandari,20,Rp100
-Kalkulus,I Wayan Suletra,20,Rp100
-Security Analysis,Benjamin,20,Rp100
-Habis Gelap Terbitlah Terang,Raden Ajeng Kartini,20,Rp100
+Cepat Lezat,Yasa Boga,20,Rp100
+Spy x Family,Tatsuya Endo,20,Rp100
+Home Sweet Loan,Almira Bastari,20,Rp100
+Matahari Minor,Tere Liye,20,Rp100
+National Geographic Lautpedia,Christina Wilsdon,20,Rp100
+Oxford Learners,Oxford,20,Rp100
+Atomic Habits,James Clear,20,Rp100
