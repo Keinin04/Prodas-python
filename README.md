@@ -21,7 +21,7 @@ Program Perpustakaan
 
 # Masalah
 
-1. Dibuatnya sebuah konstruktor di dalam class untuk data buku tersebut. Agar lebih memudahkan pemanggilan fungsi nya langsung dari class nya, bukan harus dipanggil fungsi lain(listBuku) 
+1. Dibuatnya sebuah konstruktor di dalam class untuk data buku tersebut. Agar lebih memudahkan pemanggilan fungsi nya langsung dari class nya, bukan selalu memamnggil fungsi listBuku() 
 
 2. Di fungsi yang di dalamnya membuka(with open) file buku dan file usernya dibuka secara seminimal mungkin, tidak selalu berulang2 (with open terus2an)
 
