@@ -26,3 +26,7 @@ Program Perpustakaan
 2. Di fungsi yang di dalamnya membuka(with open) file buku dan file usernya dibuka secara seminimal mungkin, tidak selalu berulang2 (with open terus2an)
 
 3. Di dalam fungsi kembalikanBuku() diganti lama lewat peminjaman tersebut jangan manual, tetapi otomatis dilihat dari jarak lama minjam nya, dicek di file Peminjaman-user tersebut.  
+
+# Solusi
+
+1. Tidak ada ⛔
