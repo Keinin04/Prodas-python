@@ -1,5 +1,9 @@
 Program Perpustakaan
+06/12/2022
+- memperbarui lokasi file buku dan pinjaman
+
 05/12/2022
+- update
 
 04/12/2022
 - menambahkan fungsi tambah buku
