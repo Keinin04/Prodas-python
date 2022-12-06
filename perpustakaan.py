@@ -5,8 +5,7 @@ import datetime
 import pandas as pd
 
 
-
-class Menu ():
+class Menu():
     def clear_screen(): # untuk menghapus tampilan
         os.system('cls')
 
@@ -25,27 +24,32 @@ class Menu ():
 
     def menu_pertama():
         while(True):
-            print("     Menu Perpustakaan   ")
+            print('     Menu Perpustakaan   ')
             print('------------------------------------')
-            print(" 1 Untuk Tampilkan Buku")
-            print(" 2 Untuk Pinjamkan Buku")
-            print(" 3 Untuk Kembalikan Buku")  
-            print(" 4 Untuk Tambahkan Buku")
+            print(' 1 Untuk Tampilkan Buku')
+            print(' 2 Untuk Pinjamkan Buku')
+            print(' 3 Untuk Kembalikan Buku')  
+            print(' 4 Untuk Tambahkan Buku')
             print(' 5 Untuk Keluar')
             try:
                 p=int(input('pilih menu 1-5: '))
                 print()
                 if p == 1:
                     Menu.clear_screen()
+                    Buku.listBuku()
                     Buku.menampilkan_buku()
                     Menu.kembali()
                 elif p == 2:
                     Menu.clear_screen()
                     Buku.listBuku()
                     Buku.minjam()
-                elif p == 4:
-                    Buku.listBuku()
+                elif p == 3:
                     Menu.clear_screen()
+                    Buku.listBuku()
+                    Buku.kembalikanBuku()
+                elif p == 4:
+                    Menu.clear_screen()
+                    Buku.tambah_buku()
                 elif p == 5:
                     print('Keluar..')
                     break
@@ -71,9 +75,9 @@ class Buku():
         jumlah_stok = []
         harga = []
 
-        with open(r'Prodas-python\buku.txt','r+') as f:
+        with open(r'buku.txt','r+') as f:
 
-            lines = f.readlines() # membaca baris 
+            lines = f.readlines() # membaca baris dan dimasukan ke list 
             lines = [x.strip('\n') for x in lines] # menghapus newline di baris
             for i in range(len(lines)):
                 ind = 0
@@ -100,7 +104,6 @@ class Buku():
         print('====================================================================================================')
         print(daftar_buku)
         print('====================================================================================================')
-            
 
     def minjam(): # peminjaman buku 
         success = False
@@ -116,7 +119,7 @@ class Buku():
             print('Masukkan huruf')
         Buku.menampilkan_buku()
 
-        t = 'Prodas-python' + '\\' + 'Pinjaman-'+firstName+'.txt'
+        t = 'Pinjaman-'+firstName+'.txt'
         with open(t,'w+') as f:
             f.write('           Perpustakaan \n')
             f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
@@ -134,9 +137,9 @@ class Buku():
                             f.write('1. \t\t'+ judul_buku[a]+'\t\t  '+pengarang[a]+'\n')
                         
                         jumlah_stok[a] = int(jumlah_stok[a]) - 1
-                        with open(r'Prodas-python\buku.txt', 'r+') as f:
+                        with open(r'buku.txt', 'r+') as f:
                             for i in range(8):
-                                f.write(judul_buku[i]+','+pengarang[i]+','+str(jumlah_stok[i]+','+'Rp'+harga[i]))
+                                f.write(judul_buku[i]+','+pengarang[i]+','+str(jumlah_stok[i])+','+'Rp'+harga[i] + '\n')
                                 continue
                         
 
@@ -158,7 +161,7 @@ class Buku():
                                         f.write(str(count) + '. \t\t' + judul_buku[a], + '\t\t ' + pengarang[a] + '\n')
 
                                         jumlah_stok[a] = int(judul_buku[a]) - 1
-                                        with open(r'Prodas-python\buku.txt', 'r+') as f:
+                                        with open(r'buku.txt', 'r+') as f:
                                             for i in range(8):
                                                 f.write(judul_buku[i]+','+pengarang[i]+','+str(jumlah_stok[i]+','+'Rp'+harga[i]))
                                                 success=False
@@ -185,11 +188,59 @@ class Buku():
                 print('')
                 print('Pilih sesuai nomor')
 
+    def kembalikanBuku():
+        name = input('Masukkan nama peminjam: ')
+        a = 'Pinjaman-' + name + '.txt'
+        try:
+            with open(a,'r') as f:
+                lines = f.readlines()
+                lines = [a.strip('Rp') for a in lines]
+
+            with open(a, 'r') as f:
+                data = f.read()
+                print(data)
+        except:
+            print('Nama peminjam salah')
+            Buku.kembalikanBuku()
+        
+        b = 'Pengembalian-' + name + '.txt'
+        with open(b, 'w+'):
+            f.write('               Program Perpustakaan\n')
+            f.write('                   Dikembalikan oleh:' + name + '\n')
+            f.write('   Tanggal: ' + Menu.getDate() + '  Waktu:' + Menu.getTime() + '\n\n')
+            f.write('S.N.\t\tJudul Buku\t\tTotal\n')
 
 
+        total = 0.0
+        for i in range(8):
+            if judul_buku[i] in data:
+                with open(b,'a') as f:
+                    f.write(str(i+1) + '\t\t' + judul_buku[i] + '\t\tRp' + harga[i] + '\n')
+                    jumlah_stok[i] = int(jumlah_stok[i]) + 1
+                total += float(harga[i])
+        
+        print('\t\t\t\t\t\t\t' + 'Rp' + str(total))
+        print('Apakah buku melewati batas peminjaman ?')
+        print('Masukkan y atau n')
+        option = input()
+        if option == 'y':
+            print('Berapa hari keterlambatan')
+            hari = int(input())
+            denda = 2000 * hari
+            with open(b, 'a+') as f:
+                f.write('\t\t\t\t\tTotal: Rp' + str(total))
 
+            with open('Buku.txt') as f:
+                for i in range(8):
+                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i] + '\n')
     
-
+    def tambah_buku():
+        with open(r'buku.txt', 'a+') as f:
+            judul_buku = input('Judul = ')
+            pengarang = input('Pengarang = ')
+            stok = input('stok = ')
+            harga = input('harga = Rp ')
+            f.write('\n' + judul_buku + ',' + pengarang + ',' + stok + 'Rp' + harga)
 
 
 os.system('cls')
