@@ -51,8 +51,13 @@ class Menu():
                     Menu.clear_screen()
                     Buku.tambah_buku()
                 elif p == 5:
-                    print('Keluar..')
+                    Menu.clear_screen()
                     break
+                # test
+                elif p == 6:
+                    print(os.getcwd())
+                # end test
+                    
                 else:
                     print('Masukkan angka')
                     Menu.kembali()
@@ -63,7 +68,7 @@ class Menu():
                 continue
 
 class Buku():
-
+    
     def listBuku():
         global judul_buku
         global pengarang
@@ -75,22 +80,25 @@ class Buku():
         jumlah_stok = []
         harga = []
 
-        with open(r'buku.txt','r+') as f:
+        f = open(r'buku.txt', 'r+')
+        f = f
 
-            lines = f.readlines() # membaca baris dan dimasukan ke list 
-            lines = [x.strip('\n') for x in lines] # menghapus newline di baris
-            for i in range(len(lines)):
-                ind = 0
-                for a in lines[i].split(','):
-                    if(ind==0):
-                        judul_buku.append(a)
-                    if(ind==1):
-                        pengarang.append(a)
-                    if(ind==2):
-                        jumlah_stok.append(a)
-                    if(ind==3):
-                        harga.append(a)
-                    ind+=1
+        lines = f.readlines() # membaca baris dan dimasukan ke list 
+        lines = [x.strip('\n') for x in lines] # menghapus \n di lines
+        for i in range(len(lines)):
+            ind = 0
+            for a in lines[i].split(','):
+                if ind == 0:
+                    judul_buku.append(a)
+                if ind == 1:
+                    pengarang.append(a)
+                if ind == 2:
+                    jumlah_stok.append(a)
+                if ind == 3:
+                    harga.append(a)
+                ind+= 1
+        
+
 
     def menampilkan_buku(): # Menampilkan Data buku
         buku = {
@@ -106,17 +114,46 @@ class Buku():
         print('====================================================================================================')
 
     def minjam(): # peminjaman buku 
+
+        # Memulai memasukkan nama peminjam
         success = False
         while(True):
-            firstName = input('Masukkan nama depan peminjam: ')
-            if firstName.isalpha(): # akan dijalankan jika type datanya str
+            while(True):
+                firstName = input('Masukkan nama depan peminjam: ')
+                if firstName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
+                    Menu.clear_screen()
+                    break
+                else:
+                    print('Masukkan huruf alphabet')
+                    Menu.kembali()
+            while(True):
+                lastName= input('Masukkan nama belakang peminjam: ')
+                if lastName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
+                    Menu.clear_screen()
+                    break
+                else:
+                    print('Masukkan huruf alphabet')
+                    Menu.kembali()
+
+            while(True):
+                Menu.clear_screen
+                print('Apakah nama ' + firstName + ' ' + lastName + ' ini sudah benar?')
+                option_name = input('y atau n ? ')
+                if option_name  == 'y':
+                    break
+                elif option_name == 'n':
+                    break
+                else:
+                    print('Masukkan y atau n saja')
+                    Menu.kembali()
+
+            if option_name == 'y':
+                Menu.clear_screen()
                 break
-            print('Masukkan huruf')
-        while(True):
-            lastName= input('Masukkan nama belakang peminjam: ')
-            if lastName.isalpha(): # akan dijalankan jika type datanya str
-                break
-            print('Masukkan huruf')
+            elif option_name == 'n':
+                Menu.clear_screen()
+                continue
+
         Buku.menampilkan_buku()
 
         t = 'Pinjaman-'+firstName+'.txt'
@@ -234,14 +271,14 @@ class Buku():
                 for i in range(8):
                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i] + '\n')
     
+    # fungsi admin
     def tambah_buku():
         with open(r'buku.txt', 'a+') as f:
             judul_buku = input('Judul = ')
             pengarang = input('Pengarang = ')
             stok = input('stok = ')
             harga = input('harga = Rp ')
-            f.write('\n' + judul_buku + ',' + pengarang + ',' + stok + 'Rp' + harga)
-
-
+            f.write('\n' + judul_buku + ',' + pengarang + ',' + stok + ',' +'Rp' + harga)
+    
 os.system('cls')
 Menu.menu_pertama()
