@@ -1,5 +1,8 @@
 Program Perpustakaan
 # Tanggal Update 
+10/12/2022
+- Menambahkan opsi yes or no pada menu peminjam, apakah nama user benar atau salah
+
 06/12/2022
 - memperbarui lokasi file buku dan pinjaman
 
