@@ -1,6 +1,8 @@
 Program Perpustakaan
 # Tanggal Update 
 11/12/2022
+- Menghapus code yang tidak berguna (duplikat) di def minjam() saat menanyakan ulang untuk meminjam buku.
+- menghapus fungsi untuk membuka file buku.txt pada fungsi def menampilkan_buku()
 - memperbaiki bug pada fungsi minjam, di saat memasukkan kembali daftar di list buku ke buku.txt
 
 10/12/2022
