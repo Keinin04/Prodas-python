@@ -101,13 +101,12 @@ class Buku():
 
 
     def menampilkan_buku(): # Menampilkan Data buku
-        with open(r'buku.txt', 'r+') as buku:
-            buku = {
-                'Judul Buku' : judul_buku,
-                'Nama Pengarang' : pengarang,
-                'Jumlah stok' : jumlah_stok,
-                'harga' : harga,
-            }
+        buku = {
+            'Judul Buku' : judul_buku,
+            'Nama Pengarang' : pengarang,
+            'Jumlah stok' : jumlah_stok,
+            'harga' : harga
+        }
 
         daftar_buku = pd.DataFrame(buku)
         print('====================================================================================================')
