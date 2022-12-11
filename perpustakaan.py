@@ -162,7 +162,7 @@ class Buku():
         # Memulai mencari buku untuk di pinjam
         success = False
         count = 0
-        while success == False:
+        while success == False: # Perulangan meminjam buku
             Buku.menampilkan_buku() # Menampilkan daftar buku
             print('Pilih menu di diatas (masukkan nomor urutan):')
             try:
