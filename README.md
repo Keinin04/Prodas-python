@@ -1,5 +1,8 @@
 Program Perpustakaan
 # Tanggal Update 
+11/12/2022
+- memperbaiki bug pada fungsi minjam, di saat memasukkan kembali daftar di list buku ke buku.txt
+
 10/12/2022
 - Menambahkan opsi yes or no pada menu peminjam, apakah nama user benar atau salah
 
