@@ -95,18 +95,19 @@ class Buku():
                 if ind == 2:
                     jumlah_stok.append(a)
                 if ind == 3:
-                    harga.append(a)
+                    harga.append(a.strip('Rp'))
                 ind+= 1
         
 
 
     def menampilkan_buku(): # Menampilkan Data buku
-        buku = {
-            'Judul Buku' : judul_buku,
-            'Nama Pengarang' : pengarang,
-            'Jumlah stok' : jumlah_stok,
-            'harga' : harga,
-        }
+        with open(r'buku.txt', 'r+') as buku:
+            buku = {
+                'Judul Buku' : judul_buku,
+                'Nama Pengarang' : pengarang,
+                'Jumlah stok' : jumlah_stok,
+                'harga' : harga,
+            }
 
         daftar_buku = pd.DataFrame(buku)
         print('====================================================================================================')
@@ -116,9 +117,10 @@ class Buku():
     def minjam(): # peminjaman buku 
 
         # Memulai memasukkan nama peminjam
-        success = False
-        while(True):
-            while(True):
+        loopName = False
+        while loopName == False: # Memulai menginput nama
+
+            while(True): # Memasukkan nama depan peminjam
                 firstName = input('Masukkan nama depan peminjam: ')
                 if firstName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
                     Menu.clear_screen()
@@ -126,7 +128,7 @@ class Buku():
                 else:
                     print('Masukkan huruf alphabet')
                     Menu.kembali()
-            while(True):
+            while(True): # Memasukkan nama belakang peminjam
                 lastName= input('Masukkan nama belakang peminjam: ')
                 if lastName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
                     Menu.clear_screen()
@@ -134,35 +136,33 @@ class Buku():
                 else:
                     print('Masukkan huruf alphabet')
                     Menu.kembali()
-
-            while(True):
+            while(True): # Menanyakan apakah nama tersebut sudah benar
                 Menu.clear_screen
                 print('Apakah nama ' + firstName + ' ' + lastName + ' ini sudah benar?')
                 option_name = input('y atau n ? ')
                 if option_name  == 'y':
+                    loopName = True
+                    Menu.clear_screen()
                     break
                 elif option_name == 'n':
+                    Menu.clear_screen()
                     break
                 else:
                     print('Masukkan y atau n saja')
                     Menu.kembali()
 
-            if option_name == 'y':
-                Menu.clear_screen()
-                break
-            elif option_name == 'n':
-                Menu.clear_screen()
-                continue
-
-        Buku.menampilkan_buku()
-
-        t = 'Pinjaman-'+firstName+'.txt'
-        with open(t,'w+') as f:
+        # Memasukkan nama peminjam ke file txt
+        u = 'Pinjaman-'+firstName+'.txt'
+        with open(u,'w+') as f:
             f.write('           Perpustakaan \n')
             f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
             f.write('    Tanggal: ' + Menu.getDate()+'    Waktu:'+ Menu.getTime()+'\n\n')
             f.write('S.N. \t\t Judul buku \t      Pengarang \n' )
 
+        Buku.menampilkan_buku() # Menampilkan daftar buku
+
+        # Memulai mencari buku untuk di pinjam
+        success = False
         while success == False:
             print('Pilih menu di diatas :')
             try:
@@ -170,16 +170,13 @@ class Buku():
                 try:
                     if (int(jumlah_stok[a])>0):
                         print('Buku Tersedia')
-                        with open(t,'a') as f:
+                        with open(u,'a') as f:
                             f.write('1. \t\t'+ judul_buku[a]+'\t\t  '+pengarang[a]+'\n')
                         
                         jumlah_stok[a] = int(jumlah_stok[a]) - 1
                         with open(r'buku.txt', 'r+') as f:
-                            for i in range(8):
-                                f.write(judul_buku[i]+','+pengarang[i]+','+str(jumlah_stok[i])+','+'Rp'+harga[i] + '\n')
-                                continue
-                        
-
+                            for i in range(len(judul_buku)):
+                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' +harga[i] + '\n')
                         # untuk buku yang dipinjam lebih dari 1
                         loop = True
                         count = 1
@@ -194,15 +191,13 @@ class Buku():
                                 a = int(input())
                                 if(int(jumlah_stok[a])>0):
                                     print('Buku Tersedia')
-                                    with open(t,'a') as f:
-                                        f.write(str(count) + '. \t\t' + judul_buku[a], + '\t\t ' + pengarang[a] + '\n')
+                                    with open(u,'a') as f:
+                                        f.write(str(count) + '. \t\t' + judul_buku[a] + '\t\t ' + pengarang[a] + '\n')
 
-                                        jumlah_stok[a] = int(judul_buku[a]) - 1
-                                        with open(r'buku.txt', 'r+') as f:
-                                            for i in range(8):
-                                                f.write(judul_buku[i]+','+pengarang[i]+','+str(jumlah_stok[i]+','+'Rp'+harga[i]))
-                                                success=False
-                                                continue
+                                    jumlah_stok[a] = int(jumlah_stok[a]) - 1
+                                    with open(r'buku.txt', 'r+') as f:
+                                        for i in range(len(judul_buku)):
+                                            f.write(judul_buku[i] + ',' + pengarang[i]+ ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i] + '\n')
                                 else:
                                     loop = False
                                     continue
