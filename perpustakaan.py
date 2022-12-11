@@ -175,7 +175,7 @@ class Buku():
                             f.write(str(count) + '. \t\t'+ judul_buku[a]+'\t\t  '+pengarang[a]+'\n')
                         
                         jumlah_stok[a] = int(jumlah_stok[a]) - 1
-                        with open(r'buku.txt', 'r+') as f:
+                        with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                             for i in range(len(judul_buku)):
                                 if i != len(judul_buku) - 1:
                                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' +harga[i] + '\n')
