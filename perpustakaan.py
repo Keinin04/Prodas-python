@@ -31,7 +31,7 @@ class Menu():
             print(' 3 Untuk Kembalikan Buku')  
             print(' 4 Untuk Keluar')
             try:
-                p=int(input('pilih menu 1-5: '))
+                p=int(input('pilih menu 1-4: '))
                 print()
                 if p == 1:
                     Menu.clear_screen()
@@ -155,7 +155,7 @@ class Buku():
         count = 0
         while success == False: # Perulangan meminjam buku
             Buku.menampilkan_buku() # Menampilkan daftar buku
-            print('Pilih menu di diatas (masukkan nomor urutan):')
+            print('Pilih salah satu menu di diatas (masukkan nomor urutan):')
             try:
                 a = int(input())
                 try:
@@ -163,7 +163,7 @@ class Buku():
                         count += 1
                         print('Buku Tersedia')
                         with open(u,'a') as f: # Memasukkannya kedalam file txt si peminjam
-                            f.write(str(count) + '. \t\t'+ judul_buku[a]+'\t\t  '+pengarang[a]+'\n')
+                            f.write(str(count) + '. \t\t'+ judul_buku[a] +'\t\t'+pengarang[a]+'\n')
                         
                         jumlah_stok[a] = int(jumlah_stok[a]) - 1
                         with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
