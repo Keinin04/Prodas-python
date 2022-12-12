@@ -1,5 +1,8 @@
 Program Perpustakaan
 # Tanggal Update 
+12/12/2022
+- Menghapus code yang membuat bug dan memperbarui fungsi pembayaran pada def kembalikanBuku()
+
 11/12/2022
 - Menghapus code yang tidak berguna (duplikat) di def minjam() saat menanyakan ulang untuk meminjam buku.
 - menghapus fungsi untuk membuka file buku.txt pada fungsi def menampilkan_buku()
