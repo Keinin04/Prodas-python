@@ -227,28 +227,49 @@ class Buku():
 
 
         total = 0.0
-        for i in range(8):
+        count = 1
+        for i in range(len(judul_buku)): # memasukkan total harga yang harus dibayar
             if judul_buku[i] in data:
                 with open(b,'a') as f:
-                    f.write(str(i+1) + '\t\t' + judul_buku[i] + '\t\tRp' + harga[i] + '\n')
-                    jumlah_stok[i] = int(jumlah_stok[i]) + 1
+                    f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\t\tRp' + harga[i] + '\n')
+                    count+=1
                 total += float(harga[i])
+            
+        with open(b,'a') as f:
+            f.write("\nTotal:\t\t\t\t\t Rp"+ str(total)) 
         
-        print('\t\t\t\t\t\t\t' + 'Rp' + str(total))
-        print('Apakah buku melewati batas peminjaman ?')
-        print('Masukkan y atau n')
-        option = input()
-        if option == 'y':
-            print('Berapa hari keterlambatan')
-            hari = int(input())
-            denda = 2000 * hari
-            with open(b, 'a+') as f:
-                f.write('\t\t\t\t\tTotal: Rp' + str(total))
+        with open(b,'r') as f:
+            total_peminjaman = f.read()
+        
+        while(True):
+            Menu.clear_screen()
+            print(total_peminjaman)
+            try:
+                cash = int(input('Masukan nominal pembayaran : \t\t Rp'))
+                if cash >= total:
+                    jumlah = total - cash
+                    with open(b, 'a') as f: # memasukan jumlah hasil rincian biaya
+                        f.write("\nBayar:\t\t\t\t\t Rp"+ str(cash)) 
+                        f.write("\nKembali:\t\t\t\t\t Rp"+ str(jumlah)) 
+                    Menu.clear_screen()
+                    break
+                elif cash < total:
+                    print('Duit anda kurang')
+                    Menu.kembali()
+            except ValueError:
+                print('Masukan nominal angka pembayaran')
+                Menu.kembali()
+            
 
-            with open('Buku.txt') as f:
-                for i in range(8):
+        jumlah_stok[i] = int(jumlah_stok[i]) + 1 # memperbarui stok 
+        with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+            for i in range(len(judul_buku)):
+                if i != len(judul_buku):
                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i] + '\n')
-    
+                else:
+                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i])
+
+
     # fungsi admin
     def tambah_buku():
         with open(r'buku.txt', 'a+') as f:
