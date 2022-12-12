@@ -212,12 +212,8 @@ class Buku():
         a = 'Pinjaman-' + name + '.txt'
         try:
             with open(a,'r') as f:
-                lines = f.readlines()
-                lines = [a.strip('Rp') for a in lines]
-
-            with open(a, 'r') as f:
                 data = f.read()
-                print(data)
+                
         except:
             print('Nama peminjam salah')
             Buku.kembalikanBuku()
