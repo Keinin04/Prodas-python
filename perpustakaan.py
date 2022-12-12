@@ -157,7 +157,7 @@ class Buku():
             Buku.menampilkan_buku() # Menampilkan daftar buku
             print('Pilih menu di diatas (masukkan nomor urutan):')
             try:
-                a=int(input())
+                a = int(input())
                 try:
                     if (int(jumlah_stok[a])>0): # Mengecek apakah stok tersebut tersedia
                         count += 1
@@ -181,6 +181,10 @@ class Buku():
                                 break
                             elif option_buku == 'n':
                                 Menu.clear_screen()
+                                with open(u, 'r') as f:
+                                    pinjaman = f.read()
+                                    print(pinjaman)
+                                    Menu.kembali()
                                 success = True
                                 break
                             else:
@@ -238,10 +242,10 @@ class Buku():
             try:
                 cash = int(input('Masukan nominal pembayaran : \t\tRp'))
                 if cash >= total:
-                    jumlah = total - cash
+                    jumlah = cash - total
                     with open(b, 'a') as f: # memasukan jumlah hasil rincian biaya
                         f.write("\nBayar:\t\t\t\t\tRp"+ str(cash)) 
-                        f.write("\nKembali:\t\t\t\t\tRp"+ str(jumlah)) 
+                        f.write("\nKembali:\t\t\t\tRp"+ str(jumlah)) 
                     Menu.clear_screen()
                     break
                 elif cash < total:
@@ -263,7 +267,7 @@ class Buku():
         with open(b, 'r') as f:
             hasil = f.read()
             print(hasil)
-        Menu.kembali
+            Menu.kembali()
 
 
 
