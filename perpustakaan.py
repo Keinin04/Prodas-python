@@ -171,7 +171,7 @@ class Buku():
                     if (int(jumlah_stok[a])>0):
                         count += 1
                         print('Buku Tersedia')
-                        with open(u,'a') as f:
+                        with open(u,'a') as f: # Memasukkannya kedalam txt si peminjam
                             f.write(str(count) + '. \t\t'+ judul_buku[a]+'\t\t  '+pengarang[a]+'\n')
                         
                         jumlah_stok[a] = int(jumlah_stok[a]) - 1
