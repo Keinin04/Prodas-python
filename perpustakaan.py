@@ -29,8 +29,7 @@ class Menu():
             print(' 1 Untuk Tampilkan Buku')
             print(' 2 Untuk Pinjamkan Buku')
             print(' 3 Untuk Kembalikan Buku')  
-            print(' 4 Untuk Tambahkan Buku')
-            print(' 5 Untuk Keluar')
+            print(' 4 Untuk Keluar')
             try:
                 p=int(input('pilih menu 1-5: '))
                 print()
@@ -49,15 +48,7 @@ class Menu():
                     Buku.kembalikanBuku()
                 elif p == 4:
                     Menu.clear_screen()
-                    Buku.tambah_buku()
-                elif p == 5:
-                    Menu.clear_screen()
                     break
-                # test
-                elif p == 6:
-                    print(os.getcwd())
-                # end test
-                    
                 else:
                     print('Masukkan angka')
                     Menu.kembali()
@@ -270,14 +261,5 @@ class Buku():
                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i])
 
 
-    # fungsi admin
-    def tambah_buku():
-        with open(r'buku.txt', 'a+') as f:
-            judul_buku = input('Judul = ')
-            pengarang = input('Pengarang = ')
-            stok = input('stok = ')
-            harga = input('harga = Rp ')
-            f.write('\n' + judul_buku + ',' + pengarang + ',' + stok + ',' +'Rp' + harga)
-    
 os.system('cls')
 Menu.menu_pertama()
