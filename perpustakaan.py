@@ -159,7 +159,7 @@ class Buku():
             try:
                 a=int(input())
                 try:
-                    if (int(jumlah_stok[a])>0):
+                    if (int(jumlah_stok[a])>0): # Mengecek apakah stok tersebut tersedia
                         count += 1
                         print('Buku Tersedia')
                         with open(u,'a') as f: # Memasukkannya kedalam file txt si peminjam
