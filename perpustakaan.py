@@ -153,7 +153,7 @@ class Buku():
         # Memasukkan nama peminjam ke file txt
         u = 'Pinjaman-'+firstName+'.txt'
         with open(u,'w+') as f:
-            f.write('           Perpustakaan \n')
+            f.write('           Program Perpustakaan \n')
             f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
             f.write('    Tanggal: ' + Menu.getDate()+'    Waktu:'+ Menu.getTime()+'\n\n')
             f.write('S.N. \t\t Judul buku \t      Pengarang \n' )
