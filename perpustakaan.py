@@ -198,7 +198,7 @@ class Buku():
                 print('')
                 print('Pilih sesuai nomor')
 
-    def kembalikanBuku():
+    def kembalikanBuku(): # fungsi untuk mengembalikan buku yang dipinjam
         name = input('Masukkan nama anda: ')
         a = 'Pinjaman-' + name + '.txt'
         try:
