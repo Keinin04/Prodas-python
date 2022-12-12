@@ -214,7 +214,7 @@ class Buku():
             f.write('               Program Perpustakaan\n')
             f.write('             Dikembalikan oleh:' + name + '\n')
             f.write('   Tanggal: ' + Menu.getDate() + '  Waktu:' + Menu.getTime() + '\n\n')
-            f.write('S.N.\t\tJudul Buku\t\tTotal\n')
+            f.write('S.N.\t\tJudul Buku\t\tHarga\n')
 
 
         total = 0.0
@@ -227,38 +227,44 @@ class Buku():
                 total += float(harga[i])
             
         with open(b,'a') as f:
-            f.write("\nTotal:\t\t\t\t\t Rp"+ str(total)) 
+            f.write("\nTotal:\t\t\t\t\tRp"+ str(total)) 
         
         with open(b,'r') as f:
-            total_peminjaman = f.read()
+            peminjaman = f.read()
         
         while(True):
             Menu.clear_screen()
-            print(total_peminjaman)
+            print(peminjaman)
             try:
-                cash = int(input('Masukan nominal pembayaran : \t\t Rp'))
+                cash = int(input('Masukan nominal pembayaran : \t\tRp'))
                 if cash >= total:
                     jumlah = total - cash
                     with open(b, 'a') as f: # memasukan jumlah hasil rincian biaya
-                        f.write("\nBayar:\t\t\t\t\t Rp"+ str(cash)) 
-                        f.write("\nKembali:\t\t\t\t\t Rp"+ str(jumlah)) 
+                        f.write("\nBayar:\t\t\t\t\tRp"+ str(cash)) 
+                        f.write("\nKembali:\t\t\t\t\tRp"+ str(jumlah)) 
                     Menu.clear_screen()
                     break
                 elif cash < total:
                     print('Duit anda kurang')
                     Menu.kembali()
             except ValueError:
-                print('Masukan nominal angka pembayaran')
+                print('Masukan nominal angka pembayaran!')
                 Menu.kembali()
             
 
         jumlah_stok[i] = int(jumlah_stok[i]) + 1 # memperbarui stok 
         with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
             for i in range(len(judul_buku)):
-                if i != len(judul_buku):
+                if i != len(judul_buku) - 1:
                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i] + '\n')
                 else:
                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i])
+        
+        with open(b, 'r') as f:
+            hasil = f.read()
+            print(hasil)
+        Menu.kembali
+
 
 
 os.system('cls')
