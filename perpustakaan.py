@@ -199,14 +199,14 @@ class Buku():
                 print('Pilih sesuai nomor')
 
     def kembalikanBuku():
-        name = input('Masukkan nama peminjam: ')
+        name = input('Masukkan nama anda: ')
         a = 'Pinjaman-' + name + '.txt'
         try:
             with open(a,'r') as f:
                 data = f.read()
                 
         except:
-            print('Nama peminjam salah')
+            print('Nama tersebut tidak ada')
             Buku.kembalikanBuku()
         
         b = 'Pengembalian-' + name + '.txt'
