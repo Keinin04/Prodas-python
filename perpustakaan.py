@@ -219,9 +219,9 @@ class Buku():
             Buku.kembalikanBuku()
         
         b = 'Pengembalian-' + name + '.txt'
-        with open(b, 'w+'):
+        with open(b, 'w+') as f:
             f.write('               Program Perpustakaan\n')
-            f.write('                   Dikembalikan oleh:' + name + '\n')
+            f.write('             Dikembalikan oleh:' + name + '\n')
             f.write('   Tanggal: ' + Menu.getDate() + '  Waktu:' + Menu.getTime() + '\n\n')
             f.write('S.N.\t\tJudul Buku\t\tTotal\n')
 
