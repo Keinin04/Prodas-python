@@ -26,10 +26,11 @@ class Menu():
         while(True):
             print('     Menu Perpustakaan   ')
             print('------------------------------------')
-            print(' 1 Untuk Tampilkan Buku')
-            print(' 2 Untuk Pinjamkan Buku')
-            print(' 3 Untuk Kembalikan Buku')  
-            print(' 4 Untuk Keluar')
+            print(' 1  Data Buku')
+            print(' 2  Data Peminjaman')
+            print(' 3  Data Pengembalian')  
+            print(' 4  Penambahan Buku')  
+            print(' 5  Keluar')
             try:
                 p=int(input('pilih menu 1-4: '))
                 print()
