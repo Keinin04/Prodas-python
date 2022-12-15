@@ -65,12 +65,10 @@ class Buku():
         global judul_buku
         global pengarang
         global jumlah_stok
-        global harga
 
         judul_buku = []
         pengarang = []
         jumlah_stok = []
-        harga = []
 
         f = open(r'buku.txt', 'r+')
         f = f
@@ -86,8 +84,6 @@ class Buku():
                     pengarang.append(a)
                 if ind == 2:
                     jumlah_stok.append(a)
-                if ind == 3:
-                    harga.append(a.strip('Rp'))
                 ind+= 1
         
 
@@ -96,8 +92,7 @@ class Buku():
         buku = {
             'Judul Buku' : judul_buku,
             'Nama Pengarang' : pengarang,
-            'Jumlah stok' : jumlah_stok,
-            'harga' : harga
+            'Jumlah stok' : jumlah_stok
         }
 
         daftar_buku = pd.DataFrame(buku)
@@ -170,9 +165,9 @@ class Buku():
                         with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                             for i in range(len(judul_buku)):
                                 if i != len(judul_buku) - 1:
-                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' +harga[i] + '\n')
+                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + '\n')
                                 else:
-                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' +harga[i])
+                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' )
                         
                         while(True): # menanyakan apakah ingin meminjam buku lagi
                             option_buku = input('Apakah ingin meminjam buku lagi ? [y/n] ')
@@ -227,7 +222,7 @@ class Buku():
         for i in range(len(judul_buku)): # memasukkan total harga yang harus dibayar
             if judul_buku[i] in data:
                 with open(b,'a') as f:
-                    f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\t\tRp' + harga[i] + '\n')
+                    f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\n')
                     count+=1
                 total += float(harga[i])
             
@@ -261,9 +256,9 @@ class Buku():
         with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
             for i in range(len(judul_buku)):
                 if i != len(judul_buku) - 1:
-                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i] + '\n')
+                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                 else:
-                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + 'Rp' + harga[i])
+                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
         
         with open(b, 'r') as f:
             hasil = f.read()
