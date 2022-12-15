@@ -1,5 +1,8 @@
 Program Perpustakaan
 # Tanggal Update 
+15/12/2022
+- Menghapus data harga
+- Menghapus tampilan menu
 12/12/2022
 - Memperbarui fungsi def kembalikanBuku()
 - Menghapus code yang membuat bug dan memperbarui fungsi pembayaran pada def kembalikanBuku()
