@@ -1,7 +1,7 @@
-Cepat Lezat,Yasa Boga,20,Rp100
-Spy x Family,Tatsuya Endo,20,Rp100
-Home Sweet Loan,Almira Bastari,20,Rp100
-Matahari Minor,Tere Liye,20,Rp100
-National Geographic,Christina Wilsdon,20,Rp100
-Oxford Learners,Oxford,20,Rp100
-Atomic Habits,James Clear,20,Rp100
+Cepat Lezat,Yasa Boga,20
+Spy x Family,Tatsuya Endo,20
+Home Sweet Loan,Almira Bastari,20
+Matahari Minor,Tere Liye,20
+National Geographic,Christina Wilsdon,20
+Oxford Learners,Oxford,20
+Atomic Habits,James Clear,20
