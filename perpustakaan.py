@@ -32,7 +32,7 @@ class Menu():
             print(' 4  Penambahan Buku')  
             print(' 5  Keluar')
             try:
-                p=int(input('pilih menu 1-4: '))
+                p=int(input('pilih menu 1-5: '))
                 print()
                 if p == 1:
                     Menu.clear_screen()
@@ -276,7 +276,7 @@ class Buku():
 
         while success == False:# perulangan identifikasi data
             while loop_judul == False:
-                judul = input("judul = ")
+                judul = input("judul Buku = ")
                 Menu.clear_screen()
 
                 while(True):
