@@ -54,11 +54,11 @@ class Menu():
                     Menu.clear_screen()
                     break
                 else:
-                    print('Masukkan angka')
+                    print('Masukkan pilihan sesuai nomor !')
                     Menu.kembali()
                     continue
             except ValueError:
-                print('Masukan pilihan sesuai nomor !')
+                print('Hanya Masukan angka saja')
                 Menu.kembali()
                 continue
 
@@ -202,22 +202,23 @@ class Buku():
                 print('Pilih sesuai nomor')
 
     def kembalikanBuku(): # fungsi untuk mengembalikan buku yang dipinjam
-        name = input('Masukkan nama anda: ')
+        name = input('Masukkan nama depan anda: ')
         a = 'Pinjaman-' + name + '.txt'
         try:
             with open(a,'r') as f:
                 data = f.read()
-                
+
         except:
             print('Nama tersebut tidak ada')
+            Menu.kembali()
             Buku.kembalikanBuku()
         
         b = 'Pengembalian-' + name + '.txt'
         with open(b, 'w+') as f:
             f.write('               Program Perpustakaan\n')
             f.write('             Dikembalikan oleh:' + name + '\n')
-            f.write('   Tanggal: ' + Menu.getDate() + '  Waktu:' + Menu.getTime() + '\n\n')
-            f.write('S.N.\t\tJudul Buku\t\tHarga\n')
+            f.write('   Tanggal: ' + Menu.getDate() + '  Waktu: ' + Menu.getTime() + '\n\n')
+            f.write('S.N.\t\tJudul Buku\n')
 
 
         total = 0.0
