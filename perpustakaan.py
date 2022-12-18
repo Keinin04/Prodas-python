@@ -49,6 +49,9 @@ class Menu():
                     Buku.kembalikanBuku()
                 elif p == 4:
                     Menu.clear_screen()
+                    Buku.tambah()
+                elif p == 5:
+                    Menu.clear_screen()
                     break
                 else:
                     print('Masukkan angka')
@@ -165,9 +168,9 @@ class Buku():
                         with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                             for i in range(len(judul_buku)):
                                 if i != len(judul_buku) - 1:
-                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' + '\n')
+                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                                 else:
-                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + ',' )
+                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                         
                         while(True): # menanyakan apakah ingin meminjam buku lagi
                             option_buku = input('Apakah ingin meminjam buku lagi ? [y/n] ')
@@ -264,6 +267,138 @@ class Buku():
             hasil = f.read()
             print(hasil)
             Menu.kembali()
+        
+    def tambah():
+        loop_judul = False
+        loop_pengarang = False
+        loop_stok = False
+        success = False
+
+        while success == False:# perulangan identifikasi data
+            while loop_judul == False:
+                judul = input("judul = ")
+                Menu.clear_screen()
+
+                while(True):
+                    print('Apakah nama Judul ' + judul + ' sudah benar?')
+                    q = input('y atau n ? : ')
+                    if q == 'y':
+                        loop_judul = True
+                        Menu.clear_screen()
+                        break
+                    elif q == 'n':
+                        Menu.clear_screen()
+                        break
+                    else:
+                        print('Masukan y atau n saja')
+                        Menu.kembali()
+                        continue
+
+            while loop_pengarang== False:
+                pengarang = input("Pengarang = ")
+                Menu.clear_screen()
+
+                while(True):
+                    print('Apakah nama pengarang ' + pengarang + ' sudah benar?')
+                    q = input('y atau n ? : ')
+                    if q == 'y':
+                        loop_pengarang = True
+                        Menu.clear_screen()
+                        break
+                    elif q == 'n':
+                        Menu.clear_screen()
+                        break
+                    else:
+                        print('Masukan y atau n saja')
+                        Menu.kembali()
+                        continue
+
+            while loop_stok == False:
+                try:
+                    stok = int(input("stok = "))
+                    Menu.clear_screen()
+                except ValueError:
+                    print('')
+                    print('Masukan nominal stok!')
+                    Menu.kembali()
+                    continue
+
+
+                while(True):
+                    print('Apakah pemasukan data dengan stok ' + str(stok) + ' sudah benar?')
+                    q = input('y atau n ? : ')
+                    if q == 'y':
+                        loop_stok= True
+                        Menu.clear_screen()
+                        break
+                    elif q == 'n':
+                        Menu.clear_screen()
+                        break
+                    else:
+                        print('Masukan y atau n saja')
+                        Menu.kembali()
+                        continue
+            
+            
+            while(True): # Bertanya apakah data yang dimasukan sudah benar?
+                Menu.clear_screen()
+                print('Apakah nama judul ' + judul + ' nama pengarang ' + pengarang + ' dengan stok ' + str(stok) + ' sudah benar?')
+                q = input('y atau n ? : ')
+                if q == 'y':
+                    with open(r'buku.txt', 'a') as f:
+                        pembatas = ","
+                        f.write('\n' + judul + pembatas + pengarang + pembatas + str(stok) )
+                    success = True
+                    wrong = False
+                    Menu.clear_screen()
+                    break
+                elif q == 'n':
+                    wrong = True
+                    Menu.clear_screen()
+                    break
+                else:
+                    print('y atau n saja')
+                    Menu.kembali()
+                    continue
+
+            while wrong == True: # mengecek apa yang salah
+                print('Apa yang salah?')
+                print('Masukan j untuk Judul : ' + judul)
+                print('Masukan p untuk Pengarang : ' + pengarang)
+                print('Masukan s untuk stok : ' + str(stok))
+                ask = input('[j/p/s] ? : ')
+                if ask == 'j':
+                    loop_judul = False
+                    wrong = False
+                    Menu.clear_screen()
+                    break
+                elif ask == 'p':
+                    loop_pengarang = False
+                    wrong = False
+                    Menu.clear_screen()
+                    break
+                elif ask == 's':
+                    loop_stok = False
+                    wrong = False
+                    Menu.clear_screen()
+                    break
+                else:
+                    print('Masukan sesuai perintah')
+                    Menu.kembali()
+                    continue
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
