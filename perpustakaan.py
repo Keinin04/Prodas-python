@@ -220,67 +220,87 @@ class Buku():
             f.write('   Tanggal: ' + Menu.getDate() + '  Waktu: ' + Menu.getTime() + '\n\n')
             f.write('S.N.\t\tJudul Buku\n')
 
-
-        total = 0.0
         count = 1
-        for i in range(len(judul_buku)): # sedang dalam maintanance untuk total 
+        buku = 0
+        for i in range(len(judul_buku)): # Menghitung buku yang dipinjam 
             if judul_buku[i] in data:
                 with open(b,'a') as f:
                     f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\n')
                     count+=1
-                total += float(harga[i])
+                buku += 1
             
-        with open(b,'a') as f:
-            f.write("\nTotal:\t\t\t\t\tRp"+ str(total)) 
+        with open(b,'a') as f:# Menulis banyaknya buku dipinjam ke file pengembalian
+            f.write("\nBanyak buku dipinjam: "+ str(buku)) 
         
-        with open(b,'r') as f:
+        with open(b,'r') as f:# Menampilkan file Pengembalian
             peminjaman = f.read()
         
-        while(True):
+        while(True):# untuk menanyakan apakah ada denda 
             Menu.clear_screen()
             print(peminjaman)
-            try:
-                cash = int(input('Masukan nominal pembayaran : \t\tRp'))
-                if cash >= total:
-                    jumlah = cash - total
-                    with open(b, 'a') as f: # memasukan jumlah hasil rincian biaya
-                        f.write("\nBayar:\t\t\t\t\tRp"+ str(cash)) 
-                        f.write("\nKembali:\t\t\t\tRp"+ str(jumlah)) 
-                    Menu.clear_screen()
-                    break
-                elif cash < total:
-                    print('Duit anda kurang')
-                    Menu.kembali()
-            except ValueError:
-                print('Masukan nominal angka pembayaran!')
-                Menu.kembali()
-            
+            success = False
+            denda = input('Apakah buku melewati batas peminjaman? [y/n]: ')
+            if denda == 'y':# Jika terkena denda
+                with open(b, 'a') as f:
+                    f.write('\nTerkena denda : ya')
 
-        jumlah_stok[i] = int(jumlah_stok[i]) + 1 # memperbarui stok 
-        with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
-            for i in range(len(judul_buku)):
-                if i != len(judul_buku) - 1:
-                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
-                else:
-                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+                while(True):# Melanjutkan menanyakan pertanyaan lain berapa hari keterlambatan
+                    Menu.clear_screen()
+                    with open(b, 'r') as f:
+                        print(f.read())
+
+                    print('Berapa hari keterlambatan ? [contoh masukan 1 untuk satu hari]')
+                    try:
+                        hari = int(input())
+                        jumlah = (buku * 500)+(hari * 500) 
+                        with open(b, 'a') as f:
+                            f.write('\nBanyaknya hari dilewati : ' + str(hari))
+                            f.write('\nDenda yang harus dibayar sebesar : Rp' + str(jumlah))
+                        success = True
+                        break
+                    except ValueError:
+                        print('Masukan jumlah hari dalam angka saja')
+                        Menu.kembali()
+
+                break
+            elif denda == 'n':# Jika tidak terkena denda
+                with open(b, 'a') as f:
+                    f.write('\nTerkena denda : Tidak')
+                success = True
+                break
+            else:
+                print('Masukan y atau n saja')
+                Menu.kembali()
+
+        while(success == True):# Dijalankan ketika sudah memenuhi
+            Menu.clear_screen()
+            jumlah_stok[i] = int(jumlah_stok[i]) + 1 # memperbarui stok 
+            with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                for i in range(len(judul_buku)):
+                    if i != len(judul_buku) - 1:
+                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                    else:
+                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+            
+            with open(b, 'r') as f:# Menampilkan hasil pengembalian
+                hasil = f.read()
+                print(hasil)
+                Menu.kembali()
+                break
         
-        with open(b, 'r') as f:
-            hasil = f.read()
-            print(hasil)
-            Menu.kembali()
-        
-    def tambah():
+    def tambah():# Untuk menambah data Buku
         loop_judul = False
         loop_pengarang = False
         loop_stok = False
         success = False
 
         while success == False:# perulangan identifikasi data
-            while loop_judul == False:
+
+            while loop_judul == False:# Memasukan data judul buku
                 judul = input("judul Buku = ")
                 Menu.clear_screen()
 
-                while(True):
+                while(True):# Menanyakan apakah yang di input sudah benar
                     print('Apakah nama Judul ' + judul + ' sudah benar?')
                     q = input('y atau n ? : ')
                     if q == 'y':
@@ -295,11 +315,11 @@ class Buku():
                         Menu.kembali()
                         continue
 
-            while loop_pengarang== False:
+            while loop_pengarang== False:# Memasukan data buku si pengarang
                 pengarang = input("Pengarang = ")
                 Menu.clear_screen()
 
-                while(True):
+                while(True):# Menanyakan apakah memasukan pengarang itu sudah benar  
                     print('Apakah nama pengarang ' + pengarang + ' sudah benar?')
                     q = input('y atau n ? : ')
                     if q == 'y':
@@ -314,7 +334,7 @@ class Buku():
                         Menu.kembali()
                         continue
 
-            while loop_stok == False:
+            while loop_stok == False:# Memasukkan data buku stok
                 try:
                     stok = int(input("stok = "))
                     Menu.clear_screen()
