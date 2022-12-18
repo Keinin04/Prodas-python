@@ -222,7 +222,6 @@ class Buku():
 
         total = 0.0
         count = 1
-        for i in range(len(judul_buku)): # memasukkan total harga yang harus dibayar
             if judul_buku[i] in data:
                 with open(b,'a') as f:
                     f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\n')
