@@ -240,6 +240,7 @@ class Buku():
             print(peminjaman)
             success = False
             denda = input('Apakah buku melewati batas peminjaman? [y/n]: ')
+
             if denda == 'y':# Jika terkena denda
                 with open(b, 'a') as f:
                     f.write('\nTerkena denda : ya')
@@ -256,12 +257,30 @@ class Buku():
                         with open(b, 'a') as f:
                             f.write('\nBanyaknya hari dilewati : ' + str(hari))
                             f.write('\nDenda yang harus dibayar sebesar : Rp' + str(jumlah))
-                        success = True
+
+                        while(True): # Memasukan nominal pembayaran
+                            Menu.clear_screen()
+                            with open(b, 'r') as f:
+                                print(f.read())
+                            try:
+                                bayar = int(input("Masukan nominal pembayaran : Rp"))
+                                if bayar < jumlah:
+                                    print('Maaf nominal anda kurang')
+                                    Menu.kembali()
+                                else:
+                                    total = jumlah - bayar
+                                    with open(b, 'a') as f:
+                                        f.write('\nDibayar sebesar : Rp' + str(bayar))
+                                        f.write('\nKembalian : Rp' + str(total))
+                                    success = True
+                                    break
+                            except ValueError:
+                                print('Masukan nominal pembayaran sesuai angka')
+                                Menu.kembali()
                         break
                     except ValueError:
                         print('Masukan jumlah hari dalam angka saja')
                         Menu.kembali()
-
                 break
             elif denda == 'n':# Jika tidak terkena denda
                 with open(b, 'a') as f:
@@ -271,6 +290,9 @@ class Buku():
             else:
                 print('Masukan y atau n saja')
                 Menu.kembali()
+
+
+
 
         while(success == True):# Dijalankan ketika sudah memenuhi
             Menu.clear_screen()
