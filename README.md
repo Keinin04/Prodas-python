@@ -1,5 +1,8 @@
 Program Perpustakaan
 # Tanggal Update 
+21/12/2022
+- Menggati komentar & menghapus yang tidak perlu
+
 20/12/2022
 - Menambah fungsi def ubah pada class buku (Masih dalam tahap pengembangan)
 
