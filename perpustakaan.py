@@ -478,6 +478,7 @@ class Buku():
                                             else:
                                                 f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                                     ubah = None
+                                    break
                                 elif ask == 'n':
                                     Menu.clear_screen()
                                     break
@@ -502,6 +503,7 @@ class Buku():
                                             else:
                                                 f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                                     ubah = None
+                                    break
                                 elif ask == 'n':
                                     Menu.clear_screen()
                                     break
@@ -530,6 +532,7 @@ class Buku():
                                             else:
                                                 f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                                     ubah = None
+                                    break
                                 elif ask == 'n':
                                     Menu.clear_screen()
                                     break
