@@ -197,9 +197,11 @@ class Buku():
                 except IndexError:
                     print('')
                     print('pilih buku sesuai nomor')
+                    Menu.kembali()
             except ValueError:
                 print('')
                 print('Pilih sesuai nomor')
+                Menu.kembali()
 
     def kembalikanBuku(): # fungsi untuk mengembalikan buku yang dipinjam
         name = input('Masukkan nama depan anda: ')
