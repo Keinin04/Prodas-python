@@ -191,7 +191,7 @@ class Buku():
                                 Menu.kembali()
                     else:
                         print('Buku tidak tersedia')
-                        Menu.clear_screen()
+                        Menu.kembali()
                         continue
                 
                 except IndexError:
