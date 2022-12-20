@@ -509,7 +509,7 @@ class Buku():
                                     print('Masukan y atau n saja')
                                     Menu.kembali()
                                     
-                        while ubah == 's':# Mengganti nama judul
+                        while ubah == 's':# Mengganti jumlah stok
                             Menu.clear_screen()
                             try:
                                 menjadi = int(input('Masukan jumlah stok baru : '))
