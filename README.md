@@ -1,5 +1,8 @@
 Program Perpustakaan
 # Tanggal Update 
+20/12/2022
+- Menambah fungsi def ubah pada class buku (Masih dalam tahap pengembangan)
+
 19/12/2022
 - Menambahkan fungsi bayar di def kembalikanBuku
 
