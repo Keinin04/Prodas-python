@@ -30,7 +30,8 @@ class Menu():
             print(' 2  Data Peminjaman')
             print(' 3  Data Pengembalian')  
             print(' 4  Penambahan Buku')  
-            print(' 5  Keluar')
+            print(' 5  Ubah Data Buku')
+            print(' 6  Keluar')
             try:
                 p=int(input('pilih menu 1-5: '))
                 print()
@@ -51,6 +52,10 @@ class Menu():
                     Menu.clear_screen()
                     Buku.tambah()
                 elif p == 5:
+                    Menu.clear_screen()
+                    Buku.listBuku()
+                    Buku.ubah()
+                elif p == 6:
                     Menu.clear_screen()
                     break
                 else:
@@ -431,6 +436,126 @@ class Buku():
                     print('Masukan sesuai perintah')
                     Menu.kembali()
                     continue
+    
+    def ubah(): # untuk mengubah data
+        success = False
+        loop_data = False
+        while success == False:
+
+            while loop_data == False: # Pilih data yang ingin di ubah
+                Buku.menampilkan_buku()
+                try:
+                    data = int(input('Pilih data keberapa yang ingin diubah ? : '))
+                    judul_buku[data]
+                    loop_ubah = False
+
+                    while loop_ubah == False:
+                        Menu.clear_screen()
+                        print('Apa yang ingin diubah ?')
+                        print('Masukan j untuk Judul : ' + judul_buku[data])
+                        print('Masukan p untuk Pengarang : ' + pengarang[data])
+                        print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
+                        print('Masukan ! untuk balik ke menu awal')
+                        ubah = str(input('Pilih apa yang diubah ?  : '))
+
+                        if ubah == '!':
+                            break
+
+                        while ubah == 'j':# Mengganti nama judul
+                            Menu.clear_screen()
+                            menjadi = input('Masukan nama judul baru : ')
+
+                            while(True): # Menanya benar atau tidak
+                                Menu.clear_screen()
+                                print('Apakah benar ingin nama judul ', judul_buku[data], ' ini menjadi ', menjadi,' ?')
+                                ask = input('y atau n : ')
+                                if ask == 'y':
+                                    judul_buku[data] = menjadi
+                                    with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                        for i in range(len(judul_buku)):
+                                            if i != len(judul_buku) - 1:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                                            else:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+                                    ubah = None
+                                    break
+                                elif ask == 'n':
+                                    Menu.clear_screen()
+                                    break
+                                else:
+                                    print('Masukan y atau n saja')
+                                    Menu.kembali()
+
+                        while ubah == 'p':# Mengganti nama pengarang
+                            Menu.clear_screen()
+                            menjadi = input('Masukan nama pengarang baru : ')
+
+                            while(True): # Menanya benar atau tidak
+                                Menu.clear_screen()
+                                print('Apakah benar ingin nama pengarang ', pengarang[data], ' ini menjadi ', menjadi,' ?')
+                                ask = input('y atau n : ')
+                                if ask == 'y':
+                                    pengarang[data] = menjadi
+                                    with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                        for i in range(len(judul_buku)):
+                                            if i != len(judul_buku) - 1:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                                            else:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+                                    ubah = None
+                                    break
+                                elif ask == 'n':
+                                    Menu.clear_screen()
+                                    break
+                                else:
+                                    print('Masukan y atau n saja')
+                                    Menu.kembali()
+                                    
+                        while ubah == 's':# Mengganti nama judul
+                            Menu.clear_screen()
+                            try:
+                                menjadi = int(input('Masukan jumlah stok baru : '))
+                            except ValueError:
+                                print('Masukan jumlah stok dalam angka saja')
+                                Menu.kembali()
+
+                            while(True): # Menanya benar atau tidak
+                                Menu.clear_screen()
+                                print('Apakah benar ingin jumlah stok ', [data], ' ini menjadi ', menjadi,' ?')
+                                ask = input('y atau n : ')
+                                if ask == 'y':
+                                    jumlah_stok[data] = menjadi
+                                    with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                        for i in range(len(judul_buku)):
+                                            if i != len(judul_buku) - 1:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                                            else:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+                                    ubah = None
+                                    break
+                                elif ask == 'n':
+                                    Menu.clear_screen()
+                                    break
+                                else:
+                                    print('Masukan y atau n saja')
+                                    Menu.kembali()
+
+                        else:
+                            print('')
+                            print('Pilih sesuai perintah di atas')
+                            Menu.kembali()
+
+                except ValueError:
+                    print('')
+                    print('Pilih sesuai nomor')
+                    Menu.kembali()
+                except IndexError:
+                    print('')
+                    print('Pilih buku sesuai nomor')
+                    Menu.kembali()
+
+
+
 
 
 
