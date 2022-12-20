@@ -455,10 +455,10 @@ class Buku():
                         print('Masukan j untuk Judul : ' + judul_buku[data])
                         print('Masukan p untuk Pengarang : ' + pengarang[data])
                         print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
-                        print('Masukan ! untuk balik ke menu awal')
+                        print('Masukan q untuk balik ke menu awal')
                         ubah = str(input('Pilih apa yang diubah ?  : '))
 
-                        if ubah == '!':
+                        if ubah == 'q':
                             break
 
                         while ubah == 'j':# Mengganti nama judul
