@@ -1,6 +1,7 @@
 Program Perpustakaan
 # Tanggal Update 
 21/12/2022
+- Memperbarui isi def ubah & menambah fungsi balik ke menu awal pada def tersebut
 - Menggati komentar & menghapus yang tidak perlu
 
 20/12/2022
