@@ -244,7 +244,8 @@ class Buku():
         with open(b,'r') as f:# Menampilkan file Pengembalian
             peminjaman = f.read()
         
-        while(True):# untuk menanyakan apakah ada denda 
+        lewat = True
+        while lewat == True: # untuk menanyakan apakah ada denda 
             Menu.clear_screen()
             print(peminjaman)
             success = False
@@ -254,7 +255,7 @@ class Buku():
                 with open(b, 'a') as f:
                     f.write('\nTerkena denda : ya')
 
-                while(True):# Melanjutkan menanyakan pertanyaan lain berapa hari keterlambatan
+                while denda == 'y':# Melanjutkan menanyakan pertanyaan lain berapa hari keterlambatan
                     Menu.clear_screen()
                     with open(b, 'r') as f:
                         print(f.read())
@@ -281,22 +282,22 @@ class Buku():
                                     with open(b, 'a') as f:
                                         f.write('\nDibayar sebesar : Rp' + str(bayar))
                                         f.write('\nKembalian : Rp' + str(total))
+                                    denda = None
+                                    lewat = False
                                     success = True
                                     break
                             except ValueError:
                                 print('Masukan nominal pembayaran sesuai angka')
                                 Menu.kembali()
-                        break
-
                     except ValueError:
                         print('Masukan jumlah hari dalam angka saja')
                         Menu.kembali()
-                break
+
             elif denda == 'n':# Jika tidak terkena denda
                 with open(b, 'a') as f:
                     f.write('\nTerkena denda : Tidak')
+                lewat = False
                 success = True
-                break
             else:
                 print('Masukan y atau n saja')
                 Menu.kembali()
