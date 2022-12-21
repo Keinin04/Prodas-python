@@ -198,7 +198,7 @@ class Buku():
                                 elif option_buku == 'n':
                                     Menu.clear_screen() 
                                     with open(d, 'a+') as f: # Mencatat Data Peminjaman
-                                        f.write('\n' + Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah meminjam Buku : ' + ','.join(str(x) for x in buku_dipinjam))
+                                        f.write(Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah meminjam Buku : ' + ','.join(str(x) for x in buku_dipinjam) + '\n')
 
                                     with open(u, 'r') as f:
                                         pinjaman = f.read()
@@ -358,7 +358,7 @@ class Buku():
                         f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
 
             with open(d, 'a+') as f: # Mencatat Data Pengembalian
-                f.write('\n' + Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali))
+                f.write(Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali) + '\n')
             
             with open(b, 'r') as f:# Menampilkan hasil pengembalian
                 hasil = f.read()
