@@ -157,43 +157,53 @@ class Buku():
         # Memulai mencari buku untuk di pinjam
         success = False
         count = 0
+        buku_dipinjam = []
         while success == False: # Perulangan meminjam buku
             Buku.menampilkan_buku() # Menampilkan daftar buku
+            print('Buku yang dipinjam : ' + ','.join(str(x) for x in buku_dipinjam))
+        
             print('Pilih salah satu menu di diatas (masukkan nomor urutan):')
             try:
                 a = int(input())
                 try:
                     if (int(jumlah_stok[a])>0): # Mengecek apakah stok tersebut tersedia
-                        count += 1
                         print('Buku Tersedia')
-                        with open(u,'a') as f: # Memasukkannya kedalam file txt si peminjam
-                            f.write(str(count) + '. \t\t'+ judul_buku[a] +'\t\t'+pengarang[a]+'\n')
                         
-                        jumlah_stok[a] = int(jumlah_stok[a]) - 1
-                        with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
-                            for i in range(len(judul_buku)):
-                                if i != len(judul_buku) - 1:
-                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                        if judul_buku[a]  not in buku_dipinjam: # Mengecek apakah buku tersebut belum minjam, jika lebih dari 1 maka tidak bisa
+                            buku_dipinjam.append(judul_buku[a])
+                            count += 1
+                            with open(u,'a') as f: # Memasukkannya kedalam file txt si peminjam
+                                f.write(str(count) + '. \t\t'+ judul_buku[a] +'\t\t'+pengarang[a]+'\n')
+                            
+                            jumlah_stok[a] = int(jumlah_stok[a]) - 1
+                            with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                for i in range(len(judul_buku)):
+                                    if i != len(judul_buku) - 1:
+                                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                                    else:
+                                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+                            
+                            while(True): # menanyakan apakah ingin meminjam buku lain lagi
+                                option_buku = input('Apakah ingin meminjam buku lain lagi ? [y/n] ')
+                                if option_buku == 'y':
+                                    Menu.clear_screen()
+                                    success = False
+                                    break
+                                elif option_buku == 'n':
+                                    Menu.clear_screen()
+                                    with open(u, 'r') as f:
+                                        pinjaman = f.read()
+                                        print(pinjaman)
+                                        Menu.kembali()
+                                    success = True
+                                    break
                                 else:
-                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
-                        
-                        while(True): # menanyakan apakah ingin meminjam buku lagi
-                            option_buku = input('Apakah ingin meminjam buku lagi ? [y/n] ')
-                            if option_buku == 'y':
-                                Menu.clear_screen()
-                                success = False
-                                break
-                            elif option_buku == 'n':
-                                Menu.clear_screen()
-                                with open(u, 'r') as f:
-                                    pinjaman = f.read()
-                                    print(pinjaman)
+                                    print('Masukan y atau n saja')
                                     Menu.kembali()
-                                success = True
-                                break
-                            else:
-                                print('Masukan y atau n saja')
-                                Menu.kembali()
+                        else:
+                            print('Maaf tidak bisa meminjam lebih dari 1 buku yang sama')
+                            Menu.kembali()
+
                     else:
                         print('Buku tidak tersedia')
                         Menu.kembali()
