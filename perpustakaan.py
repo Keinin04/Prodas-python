@@ -187,6 +187,9 @@ class Buku():
                                         f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                             
                             while(True): # menanyakan apakah ingin meminjam buku lain lagi
+                                Menu.clear_screen()
+                                Buku.menampilkan_buku() # Menampilkan daftar buku
+                                print('Buku yang dipinjam = ' + ','.join(str(x) for x in buku_dipinjam))
                                 option_buku = input('Apakah ingin meminjam buku lain lagi ? [y/n] ')
                                 if option_buku == 'y':
                                     Menu.clear_screen()
