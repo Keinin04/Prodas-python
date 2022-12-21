@@ -229,8 +229,10 @@ class Buku():
 
         count = 1
         buku = 0
+        buku_dikembali = []
         for i in range(len(judul_buku)): # Menghitung buku yang dipinjam 
             if judul_buku[i] in data:
+                buku_dikembali.append(i)
                 with open(b,'a') as f:
                     f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\n')
                     count+=1
@@ -275,7 +277,7 @@ class Buku():
                                     print('Maaf nominal anda kurang')
                                     Menu.kembali()
                                 else:
-                                    total = jumlah - bayar
+                                    total = bayar - jumlah
                                     with open(b, 'a') as f:
                                         f.write('\nDibayar sebesar : Rp' + str(bayar))
                                         f.write('\nKembalian : Rp' + str(total))
@@ -285,6 +287,7 @@ class Buku():
                                 print('Masukan nominal pembayaran sesuai angka')
                                 Menu.kembali()
                         break
+
                     except ValueError:
                         print('Masukan jumlah hari dalam angka saja')
                         Menu.kembali()
@@ -303,7 +306,9 @@ class Buku():
 
         while(success == True):# Dijalankan ketika sudah memenuhi
             Menu.clear_screen()
-            jumlah_stok[i] = int(jumlah_stok[i]) + 1 # memperbarui stok 
+            for p in buku_dikembali:
+                jumlah_stok[p] = int(jumlah_stok[p]) + 1 # memperbarui stok 
+
             with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                 for i in range(len(judul_buku)):
                     if i != len(judul_buku) - 1:
