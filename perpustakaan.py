@@ -266,7 +266,7 @@ class Buku():
         buku_dikembali = []
         for i in range(len(judul_buku)): # Menghitung buku yang dipinjam 
             if judul_buku[i] in data:
-                buku_dikembali.append(i)
+                buku_dikembali.append(judul_buku[i])
                 with open(b,'a') as f:
                     f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\n')
                     count+=1
