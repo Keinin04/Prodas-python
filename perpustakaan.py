@@ -152,6 +152,10 @@ class Buku():
             f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
             f.write('    Tanggal: ' + Menu.getDate()+'    Waktu:'+ Menu.getTime()+'\n\n')
             f.write('S.N. \t\t Judul buku \t      Pengarang \n' )
+        
+        d = 'Data-Peminjaman-'+Menu.getDate()+'.txt'
+
+
 
 
         # Memulai mencari buku untuk di pinjam
@@ -189,7 +193,10 @@ class Buku():
                                     success = False
                                     break
                                 elif option_buku == 'n':
-                                    Menu.clear_screen()
+                                    Menu.clear_screen() 
+                                    with open(d, 'a+') as f: # Mencatat Data Peminjaman
+                                        f.write('\n' + Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah meminjam Buku : ' + ','.join(str(x) for x in buku_dipinjam))
+
                                     with open(u, 'r') as f:
                                         pinjaman = f.read()
                                         print(pinjaman)
