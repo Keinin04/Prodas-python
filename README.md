@@ -2,7 +2,7 @@
 
 ## Task list
 22/12/2022
-- [ ] Buat user bisa menghapus buku saat minjam 
+- [ ] Buat user bisa menghapus buku saat minjam #201
 
 ## Tanggal Update 
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
