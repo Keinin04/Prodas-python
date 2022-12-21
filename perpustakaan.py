@@ -160,8 +160,7 @@ class Buku():
         buku_dipinjam = []
         while success == False: # Perulangan meminjam buku
             Buku.menampilkan_buku() # Menampilkan daftar buku
-            print('Buku yang dipinjam : ' + ','.join(str(x) for x in buku_dipinjam))
-        
+            print('Buku yang dipinjam = ' + ','.join(str(x) for x in buku_dipinjam))
             print('Pilih salah satu menu di diatas (masukkan nomor urutan):')
             try:
                 a = int(input())
