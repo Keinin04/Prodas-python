@@ -146,7 +146,7 @@ class Buku():
                     Menu.kembali()
 
         # Memasukkan nama peminjam ke file txt
-        u = 'Pinjaman-'+firstName+'.txt'
+        u = 'Pinjaman-'+firstName+lastName+'.txt'
         with open(u,'w+') as f:
             f.write('           Program Perpustakaan \n')
             f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
@@ -225,8 +225,24 @@ class Buku():
                 Menu.kembali()
 
     def kembalikanBuku(): # fungsi untuk mengembalikan buku yang dipinjam
-        name = input('Masukkan nama depan anda: ')
-        a = 'Pinjaman-' + name + '.txt'
+        while(True): # Memasukkan nama depan peminjam
+            firstName = input('Masukkan nama depan peminjam: ')
+            if firstName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
+                Menu.clear_screen()
+                break
+            else:
+                print('Masukkan huruf alphabet')
+                Menu.kembali()
+        while(True): # Memasukkan nama belakang peminjam
+            lastName= input('Masukkan nama belakang peminjam: ')
+            if lastName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
+                Menu.clear_screen()
+                break
+            else:
+                print('Masukkan huruf alphabet')
+                Menu.kembali()
+
+        a = 'Pinjaman-' + firstName+lastName+ '.txt'
         try:
             with open(a,'r') as f:
                 data = f.read()
@@ -236,12 +252,14 @@ class Buku():
             Menu.kembali()
             Buku.kembalikanBuku()
         
-        b = 'Pengembalian-' + name + '.txt'
+        b = 'Pengembalian-' + firstName+lastName + '.txt'
         with open(b, 'w+') as f:
             f.write('               Program Perpustakaan\n')
-            f.write('             Dikembalikan oleh:' + name + '\n')
+            f.write('             Dikembalikan oleh:' + firstName+' '+ lastName + '\n')
             f.write('   Tanggal: ' + Menu.getDate() + '  Waktu: ' + Menu.getTime() + '\n\n')
             f.write('S.N.\t\tJudul Buku\n')
+        
+        d = 'Data-Pengembalian-'+Menu.getDate()+'.txt'
 
         count = 1
         buku = 0
@@ -298,6 +316,9 @@ class Buku():
                                     with open(b, 'a') as f:
                                         f.write('\nDibayar sebesar : Rp' + str(bayar))
                                         f.write('\nKembalian : Rp' + str(total))
+
+                                    with open(d, 'a+') as f: # Mencatat Data Pengembalian
+                                        f.write('\n' + Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali))
                                     denda = None
                                     lewat = False
                                     success = True
