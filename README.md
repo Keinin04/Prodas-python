@@ -1,6 +1,7 @@
 Program Perpustakaan
 # Tanggal Update 
 21/12/2022
+- Memperbaiki tampilan saat kesalahan input terjadi di saat menanyakan ingin meminjam buku lagi di def minjam
 - Kesalahan menaruh pencacatan data pengembalian 
 - Memperbarui penamaan file user pada def minjam dan kembalikanBuku
 - Menambah fungsi untuk mencatat yang minjam di def minjam
