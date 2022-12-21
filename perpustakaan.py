@@ -306,8 +306,9 @@ class Buku():
 
         while(success == True):# Dijalankan ketika sudah memenuhi
             Menu.clear_screen()
-            for p in buku_dikembali:
-                jumlah_stok[p] = int(jumlah_stok[p]) + 1 # memperbarui stok 
+            for p in buku_dikembali: # Memperbarui stok di list 
+                jumlah_stok[p] = int(jumlah_stok[p]) + 1 
+                jumlah_stok[p] = str(jumlah_stok[p])
 
             with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                 for i in range(len(judul_buku)):
