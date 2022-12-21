@@ -1,4 +1,9 @@
 # Program Perpustakaan
+
+## Task list
+22/12/2022
+[] Buat user bisa menghapus buku saat minjam 
+
 ## Tanggal Update 
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
 
