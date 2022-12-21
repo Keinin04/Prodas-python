@@ -317,8 +317,6 @@ class Buku():
                                         f.write('\nDibayar sebesar : Rp' + str(bayar))
                                         f.write('\nKembalian : Rp' + str(total))
 
-                                    with open(d, 'a+') as f: # Mencatat Data Pengembalian
-                                        f.write('\n' + Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali))
                                     denda = None
                                     lewat = False
                                     success = True
@@ -344,9 +342,10 @@ class Buku():
 
         while(success == True):# Dijalankan ketika sudah memenuhi
             Menu.clear_screen()
-            for p in buku_dikembali: # Memperbarui stok di list 
-                jumlah_stok[p] = int(jumlah_stok[p]) + 1 
-                jumlah_stok[p] = str(jumlah_stok[p])
+            for p in range(len(judul_buku)): # Memperbarui stok di list 
+                if judul_buku[p] in data:
+                    jumlah_stok[p] = int(jumlah_stok[p]) + 1 
+                    jumlah_stok[p] = str(jumlah_stok[p])
 
             with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                 for i in range(len(judul_buku)):
@@ -354,6 +353,9 @@ class Buku():
                         f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                     else:
                         f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+
+            with open(d, 'a+') as f: # Mencatat Data Pengembalian
+                f.write('\n' + Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali))
             
             with open(b, 'r') as f:# Menampilkan hasil pengembalian
                 hasil = f.read()
