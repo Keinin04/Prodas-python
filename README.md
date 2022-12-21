@@ -1,6 +1,7 @@
 Program Perpustakaan
 # Tanggal Update 
 21/12/2022
+- Memperbarui penamaan file user pada def minjam dan kembalikanBuku
 - Menambah fungsi untuk mencatat yang minjam di def minjam
 - Menambah fungsi tidak bisa minjam lebih dari 1 buku, dan menambah deskripsi tampilan buku yang sudah dipinjam
 - Mengganti break menjadi variable apapun untuk berhenti di def kembalikanBuku
