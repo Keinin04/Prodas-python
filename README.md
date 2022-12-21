@@ -1,6 +1,7 @@
 Program Perpustakaan
 # Tanggal Update 
 21/12/2022
+- Mengganti break menjadi variable apapun untuk berhenti di def kembalikanBuku
 - Memperbaiki list stok pada def kembalikan buku yang berfungsi untuk mengupdate list yang tadinya int menjadi str saat dimasukan ke list
 - Memperbaiki total bayar dan pembaruan buku.txt pada def kembalikanBuku
 - Memperbarui isi def ubah & menambah fungsi balik ke menu awal pada def tersebut
