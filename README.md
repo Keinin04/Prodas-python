@@ -2,7 +2,7 @@
 
 ## Task list
 22/12/2022
-- [ ] Buat user bisa menghapus buku saat minjam 
+- [ ] https://github.com/Keinin04/Prodas-python/issues/1#issue-1506973281 
 
 ## Tanggal Update 
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
