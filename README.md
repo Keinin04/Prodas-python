@@ -2,6 +2,8 @@
 
 ## Task list
 22/12/2022
+- Memperbarui cara mencatat yang sesuai saat user saat peminjaman 
+
 ## Tanggal Update 
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
 
