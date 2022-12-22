@@ -147,11 +147,7 @@ class Buku():
 
         # Memasukkan nama peminjam ke file txt
         u = 'Pinjaman-'+firstName+lastName+'.txt'
-        with open(u,'w+') as f:
-            f.write('           Program Perpustakaan \n')
-            f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
-            f.write('    Tanggal: ' + Menu.getDate()+'    Waktu:'+ Menu.getTime()+'\n\n')
-            f.write('S.N. \t\t Judul buku \t      Pengarang \n' )
+
         
         d = 'Data-Peminjaman-'+Menu.getDate()+'.txt'
 
@@ -174,17 +170,10 @@ class Buku():
                         
                         if judul_buku[a]  not in buku_dipinjam: # Mengecek apakah buku tersebut belum minjam, jika lebih dari 1 maka tidak bisa
                             buku_dipinjam.append(judul_buku[a])
-                            count += 1
-                            with open(u,'a') as f: # Memasukkannya kedalam file txt si peminjam
-                                f.write(str(count) + '. \t\t'+ judul_buku[a] +'\t\t'+pengarang[a]+'\n')
                             
                             jumlah_stok[a] = int(jumlah_stok[a]) - 1
-                            with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
-                                for i in range(len(judul_buku)):
-                                    if i != len(judul_buku) - 1:
-                                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
-                                    else:
-                                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+                            jumlah_stok[a] = str(jumlah_stok[a])
+
                             
                             while(True): # menanyakan apakah ingin meminjam buku lain lagi
                                 Menu.clear_screen()
@@ -197,13 +186,34 @@ class Buku():
                                     break
                                 elif option_buku == 'n':
                                     Menu.clear_screen() 
+
                                     with open(d, 'a+') as f: # Mencatat Data Peminjaman
                                         f.write(Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah meminjam Buku : ' + ','.join(str(x) for x in buku_dipinjam) + '\n')
 
-                                    with open(u, 'r') as f:
+                                    with open(u,'w+') as f: # Mulai mencatat header si peminjam
+                                        f.write('           Program Perpustakaan \n')
+                                        f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
+                                        f.write('    Tanggal: ' + Menu.getDate()+'    Waktu:'+ Menu.getTime()+'\n\n')
+                                        f.write('S.N. \t\t Judul buku \t      Pengarang \n' )
+
+
+                                    with open(u,'a') as f: # Memasukkannya kedalam file txt si peminjam
+                                        for p in range(len(buku_dipinjam)):
+                                            count += 1
+                                            f.write(str(count) + '. \t\t'+ buku_dipinjam[p] +'\t\t'+buku_dipinjam[p]+'\n')
+
+                                    with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                        for i in range(len(judul_buku)):
+                                            if i != len(judul_buku) - 1:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                                            else:
+                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+
+                                    with open(u, 'r') as f: # Menampilkan hasil peminjaman
                                         pinjaman = f.read()
                                         print(pinjaman)
                                         Menu.kembali()
+
                                     success = True
                                     break
                                 else:
