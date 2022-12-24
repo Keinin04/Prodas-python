@@ -46,6 +46,7 @@ class Menu():
                 elif p == 3:
                     Menu.clear_screen()
                     Buku.listBuku()
+                    Buku.listPeminjam()
                     Buku.kembalikanBuku()
                 elif p == 4:
                     Menu.clear_screen()
@@ -78,6 +79,7 @@ class Menu():
                 print('')
                 p = input('pilih menu 1-2: ')
                 if p == 'q':
+                    Menu.clear_screen()
                     break
                 else:
                     p = int(p)
