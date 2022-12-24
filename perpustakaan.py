@@ -450,7 +450,7 @@ class Buku():
                         f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
 
             with open(d, 'a+') as f: # Mencatat Data Pengembalian
-                f.write(Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali) + '\n')
+                f.write(Menu.getTime() + ' - ' + Name +  ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali) + '\n')
             
             with open(b, 'r') as f:# Menampilkan hasil pengembalian
                 hasil = f.read()
