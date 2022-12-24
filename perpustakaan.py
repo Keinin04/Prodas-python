@@ -70,7 +70,7 @@ class Menu():
         while(True):
             Menu.clear_screen()
             print('     Menu Perpustakaan > Data Peminjaman >  ')
-            print('------------------------------------')
+            print('------------------------------------------')
             print(' 1  Menampilkan Data Peminjaman')
             print(' 2  Menambahkan Data Peminjaman')
             print(' q  Untuk Balik kebelakang')
@@ -170,7 +170,7 @@ class Buku():
         peminjam = {
             'Nama Peminjam' : nama_peminjam,
             'Buku dipinjam' : buku_dipinjam,
-            'Tanggal Peminjaman' : tanggal_dipinjam
+            'Tanggal' : tanggal_dipinjam
         }
 
         daftar_peminjam = pd.DataFrame(peminjam)
