@@ -181,6 +181,7 @@ class Buku():
             print('Data Peminjaman kosong.')
             print('Pergi ke menu Menambahkan Data Peminjaman untuk memasukan Data.')
             print('====================================================================================================')
+            return 'kosong'
         else:
             print('====================================================================================================')
             print(daftar_peminjam)
@@ -269,8 +270,10 @@ class Buku():
                                     break
                                 elif option_buku == 'n':
                                     Menu.clear_screen() 
+                                    Menu.kembali()
 
                                     with open(d, 'a+') as f: # Mencatat Data Peminjaman
+                                    with open(d, 'r+') as f: # Mencatat Data Peminjaman
                                         f.write(Name +  '.' + ','.join(str(x) for x in buku_dipinjam) + '.' + Menu.getDate() + '\n')
 
 
@@ -308,21 +311,29 @@ class Buku():
 
     def kembalikanBuku(): # fungsi untuk mengembalikan buku yang dipinjam
         while(True): # Memasukkan nama depan peminjam
-            firstName = input('Masukkan nama depan peminjam: ')
-            if firstName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
-                Menu.clear_screen()
+            if Buku.menampilkan_peminjam() == 'kosong':
+                print('Tidak bisa melanjutkan karena data peminjaman kosong')
+                Menu.kembali()
                 break
             else:
-                print('Masukkan huruf alphabet')
-                Menu.kembali()
-        while(True): # Memasukkan nama belakang peminjam
-            lastName= input('Masukkan nama belakang peminjam: ')
-            if lastName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
-                Menu.clear_screen()
-                break
-            else:
-                print('Masukkan huruf alphabet')
-                Menu.kembali()
+                print('Masukkan q  Untuk Balik Kebelakang')
+                print('Pilih salah satu menu di diatas (masukkan nomor urutan):')
+
+                try:
+                    k = int(input(''))
+                    # MASIH BLM DI LANJUTIN
+                    nama_peminjam[k]
+
+                    nama_peminjam.remove(nama_peminjam[k])
+
+                    daftar_buku_dipinjam = buku_dipinjam[k].split(',') 
+                    for b in range(len(daftar_buku_dipinjam)):
+                        for i in range(len(judul_buku)):
+                            if daftar_buku_dipinjam[b] == judul_buku[i]:
+                                jumlah_stok[i] = int(jumlah_stok[i]) + 1
+                                jumlah_stok[i] = str(jumlah_stok[i])
+                                break
+
 
         a = 'Pinjaman-' + firstName+lastName+ '.txt'
         try:
