@@ -33,7 +33,7 @@ class Menu():
             print(' 5  Ubah Data Buku')
             print(' 6  Keluar')
             try:
-                p=int(input('pilih menu 1-5: '))
+                p=int(input('pilih menu 1-6: '))
                 print()
                 if p == 1:
                     Menu.clear_screen()
@@ -42,8 +42,7 @@ class Menu():
                     Menu.kembali()
                 elif p == 2:
                     Menu.clear_screen()
-                    Buku.listBuku()
-                    Buku.minjam()
+                    Menu.menu_data_peminjaman()
                 elif p == 3:
                     Menu.clear_screen()
                     Buku.listBuku()
@@ -66,6 +65,41 @@ class Menu():
                 print('Hanya Masukan angka saja')
                 Menu.kembali()
                 continue
+    
+    def menu_data_peminjaman():
+        while(True):
+            Menu.clear_screen()
+            print('     Menu Perpustakaan > Data Peminjaman >  ')
+            print('------------------------------------')
+            print(' 1  Menampilkan Data Peminjaman')
+            print(' 2  Menambahkan Data Peminjaman')
+            print(' q  Untuk Balik kebelakang')
+            try:
+                print('')
+                p = input('pilih menu 1-2: ')
+                if p == 'q':
+                    break
+                else:
+                    p = int(p)
+
+                    if p == 1:
+                        Menu.clear_screen()
+                        Buku.listPeminjam()
+                        print('     Menu Perpustakaan > Data Peminjaman >  Menampilkan Data Peminjaman')
+                        print('-----------------------------------------------------------------------')
+                        Buku.menampilkan_peminjam()
+                        Menu.kembali()
+                    elif p == 2:
+                        Menu.clear_screen()
+                        Buku.listBuku()
+                        Buku.minjam()
+            except ValueError:
+                print('Masukan sesuai perintah')
+                Menu.kembali()
+
+
+
+
 
 class Buku():
     
@@ -94,6 +128,30 @@ class Buku():
                     jumlah_stok.append(a)
                 ind+= 1
         
+    def listPeminjam():
+        # Menyimpan identitas
+        global nama_peminjam
+        global buku_dipinjam
+        global tanggal_dipinjam
+
+        nama_peminjam = []
+        buku_dipinjam = []
+        tanggal_dipinjam = []
+        with open(r'Data-Peminjaman.txt', 'r+') as f:
+            lines = f.readlines()
+            lines = [x.strip('\n') for x in lines]
+
+            for i in range(len(lines)):
+                ind = 0
+                for a in lines[i].split('.'):
+                    if ind == 0:
+                        nama_peminjam.append(a)
+                    if ind == 1:
+                        buku_dipinjam.append(a)
+                    if ind == 2:
+                        tanggal_dipinjam.append(a)
+                    ind+=1
+        
 
 
     def menampilkan_buku(): # Menampilkan Data buku
@@ -107,6 +165,20 @@ class Buku():
         print('====================================================================================================')
         print(daftar_buku)
         print('====================================================================================================')
+    
+    def menampilkan_peminjam():
+        peminjam = {
+            'Nama Peminjam' : nama_peminjam,
+            'Buku dipinjam' : buku_dipinjam,
+            'Tanggal Peminjaman' : tanggal_dipinjam
+        }
+
+        daftar_peminjam = pd.DataFrame(peminjam)
+        print('====================================================================================================')
+        print(daftar_peminjam)
+        print('====================================================================================================')
+
+
 
     def minjam(): # peminjaman buku 
 
@@ -115,24 +187,19 @@ class Buku():
         while loopName == False: # Memulai menginput nama
 
             while(True): # Memasukkan nama depan peminjam
-                firstName = input('Masukkan nama depan peminjam: ')
-                if firstName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
+                Name = input('Masukkan nama peminjam: ')
+                check_name = Name.replace(' ', '')
+                if check_name.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
                     Menu.clear_screen()
                     break
                 else:
+                    print('')
                     print('Masukkan huruf alphabet')
                     Menu.kembali()
-            while(True): # Memasukkan nama belakang peminjam
-                lastName= input('Masukkan nama belakang peminjam: ')
-                if lastName.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
-                    Menu.clear_screen()
-                    break
-                else:
-                    print('Masukkan huruf alphabet')
-                    Menu.kembali()
-            while(True): # Menanyakan apakah nama tersebut sudah benar
+
+            while(True):
                 Menu.clear_screen
-                print('Apakah nama ' + firstName + ' ' + lastName + ' ini sudah benar?')
+                print('Apakah nama ' + Name +  ' ini sudah benar?')
                 option_name = input('y atau n ? ')
                 if option_name  == 'y':
                     loopName = True
@@ -145,11 +212,8 @@ class Buku():
                     print('Masukkan y atau n saja')
                     Menu.kembali()
 
-        # Memasukkan nama peminjam ke file txt
-        u = 'Pinjaman-'+firstName+lastName+'.txt'
-
-        
-        d = 'Data-Peminjaman-'+Menu.getDate()+'.txt'
+        # Memasukkan nama peminjam ke file data peminjaman txt
+        d = 'Data-Peminjaman.txt'
 
 
 
@@ -188,19 +252,9 @@ class Buku():
                                     Menu.clear_screen() 
 
                                     with open(d, 'a+') as f: # Mencatat Data Peminjaman
-                                        f.write(Menu.getTime() + ' - ' + firstName + ' ' + lastName + ' ' + ' telah meminjam Buku : ' + ','.join(str(x) for x in buku_dipinjam) + '\n')
-
-                                    with open(u,'w+') as f: # Mulai mencatat header si peminjam
-                                        f.write('           Program Perpustakaan \n')
-                                        f.write('       Dipinjam oleh: '+ firstName + ' ' + lastName + '\n')
-                                        f.write('    Tanggal: ' + Menu.getDate()+'    Waktu:'+ Menu.getTime()+'\n\n')
-                                        f.write('S.N. \t\t Judul buku \t      Pengarang \n' )
+                                        f.write(Name +  '.' + ','.join(str(x) for x in buku_dipinjam) + '.' + Menu.getDate() + '\n')
 
 
-                                    with open(u,'a') as f: # Memasukkannya kedalam file txt si peminjam
-                                        for p in range(len(buku_dipinjam)):
-                                            count += 1
-                                            f.write(str(count) + '. \t\t'+ buku_dipinjam[p] +'\t\t'+buku_dipinjam[p]+'\n')
 
                                     with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                                         for i in range(len(judul_buku)):
@@ -209,10 +263,6 @@ class Buku():
                                             else:
                                                 f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
 
-                                    with open(u, 'r') as f: # Menampilkan hasil peminjaman
-                                        pinjaman = f.read()
-                                        print(pinjaman)
-                                        Menu.kembali()
 
                                     success = True
                                     break
