@@ -20,7 +20,7 @@ class Menu():
 
     def getTime(): # untuk mendapatkan waktu 
         now = datetime.datetime.now
-        return str(now().time())
+        return str(now().strftime('%H:%M:%S'))
 
     def menu_pertama():
         while(True):
