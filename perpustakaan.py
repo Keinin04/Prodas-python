@@ -334,7 +334,16 @@ class Buku():
                                 break
 
 
-        a = 'Pinjaman-' + firstName+lastName+ '.txt'
+
+                except IndexError:
+                    print('Pilih salah satu nomor diatas')
+                    Menu.kembali()
+
+                
+
+
+            
+            
         try:
             with open(a,'r') as f:
                 data = f.read()
