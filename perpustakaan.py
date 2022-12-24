@@ -224,7 +224,6 @@ class Buku():
 
         # Memulai mencari buku untuk di pinjam
         success = False
-        count = 0
         buku_dipinjam = []
         while success == False: # Perulangan meminjam buku
             print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
