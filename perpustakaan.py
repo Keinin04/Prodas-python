@@ -353,12 +353,6 @@ class Buku():
             Menu.kembali()
             Buku.kembalikanBuku()
         
-        b = 'Pengembalian-' + firstName+lastName + '.txt'
-        with open(b, 'w+') as f:
-            f.write('               Program Perpustakaan\n')
-            f.write('             Dikembalikan oleh:' + firstName+' '+ lastName + '\n')
-            f.write('   Tanggal: ' + Menu.getDate() + '  Waktu: ' + Menu.getTime() + '\n\n')
-            f.write('S.N.\t\tJudul Buku\n')
         
         d = 'Data-Pengembalian-'+Menu.getDate()+'.txt'
 
