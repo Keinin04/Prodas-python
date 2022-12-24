@@ -272,11 +272,8 @@ class Buku():
                                     Menu.clear_screen() 
                                     Menu.kembali()
 
-                                    with open(d, 'a+') as f: # Mencatat Data Peminjaman
                                     with open(d, 'r+') as f: # Mencatat Data Peminjaman
                                         f.write(Name +  '.' + ','.join(str(x) for x in buku_dipinjam) + '.' + Menu.getDate() + '\n')
-
-
 
                                     with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
                                         for i in range(len(judul_buku)):
@@ -284,6 +281,8 @@ class Buku():
                                                 f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                                             else:
                                                 f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+
+                                    print('Data Peminjaman ' + Name + ' sudah tersimpan')
 
 
                                     success = True
