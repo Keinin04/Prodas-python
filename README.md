@@ -5,6 +5,14 @@
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
 
 24/12/2022
+- Menambah except ketika pemilihan data user melelibih atau tidak dalam nomor urut[link commit](https://github.com/Keinin04/Prodas-python/commit/1f108979e5ab9e4e28389ac3d39f55c4481b3110)
+- Menampilkan keterangan ketika data user sudah tersimpan [link commit](https://github.com/Keinin04/Prodas-python/commit/c16bbe5fd2ff17f1a67d90cfe1d31b69f474ed2f)
+- Menambahkan kondisi ketika Data Peminjaman kosong tidak bisa melanjutkan menu kembalikanBuku & mengganti type Data Peminjaman saat di open [link commit](https://github.com/Keinin04/Prodas-python/commit/d5e2cfc69dc364878f347dc07794758e8a92b908a)
+- Menambahkan fungsi def listPeminjam pada Menu dan memperbaiki tampilan tidak ter-cls saat Menu Data Peminjaman. [link commit](https://github.com/Keinin04/Prodas-python/commit/b544c7afef48eaa100784fd717b8a05dd91d483f)
+- Memperbarui tampilan DataFrame jika Data Peminjaman kosong. [link commit](https://github.com/Keinin04/Prodas-python/commit/a5c9e3c72a0ece6b7bb608b9df8ee898337637a3)
+- Memperbarui tampilan pada menu Data Peminjaman. [link commit](https://github.com/Keinin04/Prodas-python/commit/b0912f26c6bac2a293a84d6d8ea5adff5cc58ae5)
+- Update tampilan pada Menu Menambahkan Data Peminjam. [link commit](https://github.com/Keinin04/Prodas-python/commit/57d0d0954d57eaf19a66d7593f63957ca8bf6dbc)
+- Mengganti penyimpanan user peminjaman ke file Data-peminjaman.txt. [link commit](https://github.com/Keinin04/Prodas-python/commit/57d0d0954d57eaf19a66d7593f63957ca8bf6dbc)
 - Menghapus milisecond. [link commit](https://github.com/Keinin04/Prodas-python/commit/a393fb2e7fabc923480f15c46e84f3559bdc65c4)
 
 
