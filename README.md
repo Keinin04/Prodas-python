@@ -5,7 +5,7 @@
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
 
 24/12/2022
-- Menghapus milisecond https://github.com/Keinin04/Prodas-python/commit/a393fb2e7fabc923480f15c46e84f3559bdc65c4
+- Menghapus milisecond a393fb2
 
 
 22/12/2022
