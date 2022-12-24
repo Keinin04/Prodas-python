@@ -1,11 +1,15 @@
 # Program Perpustakaan
 
-## Task list
-22/12/2022
-- Memperbarui cara mencatat yang sesuai saat user saat peminjaman 
 
 ## Tanggal Update 
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
+
+24/12/2022
+- Menghapus milisecond https://github.com/Keinin04/Prodas-python/commit/a393fb2e7fabc923480f15c46e84f3559bdc65c4
+
+
+22/12/2022
+- Memperbarui cara mencatat yang sesuai saat user saat peminjaman 
 
 21/12/2022
 - mengganti penulisan newline yang tadinya di awal ditaruh di akhir baris di Data peminjaman dan pengembalian
