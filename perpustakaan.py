@@ -450,12 +450,11 @@ class Buku():
 
                         while success == True:
                             # Mengembalikan buku ke list stok
-                            for y in range(len(buku_dipinjam[k])):
-                                for i in range(len(judul_buku)):
-                                    if buku_dipinjam[k][y] == judul_buku[i]:
-                                        jumlah_stok[i] = int(jumlah_stok[i]) + 1
-                                        jumlah_stok[i] = str(jumlah_stok[i])
-                                        break
+                            for buku in buku_dipinjam[k]:
+                                index = judul_buku.index(buku)
+                                jumlah_stok[index] = int(jumlah_stok[index]) +1
+                                jumlah_stok[index] = str(jumlah_stok[index])
+                                buku_dipinjam[k].remove(buku)
 
                             nama_peminjam.remove(nama_peminjam[k]) # Menghapus nama peminjam di data list
                             buku_dipinjam.remove(buku_dipinjam[k]) # Menghpaus buku dari peminjam
