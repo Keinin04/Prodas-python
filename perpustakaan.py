@@ -29,6 +29,7 @@ class Menu():
             print(' 3  Data Pengembalian')  
             print(' q  Keluar')
             try:
+                print('')
                 p=int(input('pilih menu 1-3 atau q: '))
                 print()
                 if p == 1:
