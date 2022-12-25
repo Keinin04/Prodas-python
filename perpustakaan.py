@@ -57,7 +57,7 @@ class Menu():
     def menu_data_buku():
         while(True):
             print('     Menu Perpustakaan > Data Buku >')
-            print('------------------------------------')
+            print('---------------------------------------')
             print(' 1  Menampilkan Data buku')
             print(' 2  Menambahkan Data buku')
             print(' 3  Mengubah Data buku')
@@ -75,7 +75,7 @@ class Menu():
                         Menu.clear_screen()
                         Buku.listBuku()
                         print('     Menu Perpustakaan > Data Buku > Menampilkan Data Buku')
-                        print('-----------------------------------------------------------')
+                        print('--------------------------------------------------------------')
                         Buku.menampilkan_buku()
                         Menu.kembali()
                     elif p == 2:
@@ -94,7 +94,7 @@ class Menu():
         while(True):
             Menu.clear_screen()
             print('     Menu Perpustakaan > Data Peminjaman >  ')
-            print('------------------------------------------')
+            print('----------------------------------------------')
             print(' 1  Menampilkan Data Peminjaman')
             print(' 2  Menambahkan Data Peminjaman')
             print(' q  Untuk Balik kebelakang')
@@ -111,7 +111,7 @@ class Menu():
                         Menu.clear_screen()
                         Buku.listPeminjam()
                         print('     Menu Perpustakaan > Data Peminjaman >  Menampilkan Data Peminjaman')
-                        print('-----------------------------------------------------------------------')
+                        print('--------------------------------------------------------------------------')
                         Buku.menampilkan_peminjam()
                         Menu.kembali()
                     elif p == 2:
@@ -221,7 +221,7 @@ class Buku():
 
             while(True): # Memasukkan nama depan peminjam
                 print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
-                print('-----------------------------------------------------------------------')
+                print('--------------------------------------------------------------------------')
                 Name = input('Masukkan nama peminjam: ')
                 check_name = Name.replace(' ', '')
                 if check_name.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
@@ -235,7 +235,7 @@ class Buku():
             while(True):
                 Menu.clear_screen
                 print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
-                print('-----------------------------------------------------------------------')
+                print('--------------------------------------------------------------------------')
                 print('Apakah nama ' + Name +  ' ini sudah benar?')
                 option_name = input('y atau n ? ')
                 if option_name  == 'y':
@@ -260,7 +260,7 @@ class Buku():
         buku_dipinjam = []
         while success == False: # Perulangan meminjam buku
             print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
-            print('-----------------------------------------------------------------------')
+            print('---------------------------------------------------------------------------')
             print('====================================================================================================')
             print('     Nama Peminjam : ' + Name)
             Buku.menampilkan_buku() # Menampilkan daftar buku
@@ -282,7 +282,7 @@ class Buku():
                             while(True): # menanyakan apakah ingin meminjam buku lain lagi
                                 Menu.clear_screen()
                                 print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
-                                print('-----------------------------------------------------------------------')
+                                print('---------------------------------------------------------------------------')
                                 print('====================================================================================================')
                                 print('     Nama Peminjam : ' + Name)
                                 Buku.menampilkan_buku() # Menampilkan daftar buku
