@@ -309,6 +309,11 @@ class Buku():
                                                 f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
 
                                     print('Data Peminjaman ' + Name + ' sudah tersimpan')
+                                    print('     Menu Perpustakaan > Data Pengembalian > ', nama)
+                                    print('------------------------------------------------------------------------')
+                                    print('====================================================================================================')
+                                    print('Data Peminjaman ' + Name + ' sudah tersimpan')
+                                    print('====================================================================================================')
 
                                     Menu.kembali()
                                     success = True
