@@ -457,7 +457,6 @@ class Buku():
                                 buku_dipinjam[k].remove(buku)
 
                             nama_peminjam.remove(nama_peminjam[k]) # Menghapus nama peminjam di data list
-                            buku_dipinjam.remove(buku_dipinjam[k]) # Menghpaus buku dari peminjam
                             tanggal_dipinjam.remove(tanggal_dipinjam[k]) # Menghapus tanggal peminjam di data list
 
                             with open(r'Data-Peminjaman.txt', 'r') as f: # Mencatat Data Peminjaman
