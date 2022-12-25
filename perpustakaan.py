@@ -459,11 +459,12 @@ class Buku():
                             nama_peminjam.remove(nama_peminjam[k]) # Menghapus nama peminjam di data list
                             tanggal_dipinjam.remove(tanggal_dipinjam[k]) # Menghapus tanggal peminjam di data list
 
-                            with open(r'Data-Peminjaman.txt', 'r') as f: # Mencatat Data Peminjaman
+                            # Mencatat Data Peminjaman
+                            with open(r'Data-Peminjaman.txt', 'r') as f: 
                                 lines = f.readlines()
                             del lines[k]
 
-                            with open(r'Data-Peminjaman.txt', 'w') as f: # Mencatat Data Peminjaman
+                            with open(r'Data-Peminjaman.txt', 'w') as f: 
                                 f.writelines(lines)
                             f.close()
                             os.truncate('Data-Peminjaman.txt', os.path.getsize('Data-Peminjaman.txt'))
@@ -475,6 +476,8 @@ class Buku():
                                         f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                                     else:
                                         f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+
+                            Buku.listPeminjam()
 
                             print('     Menu Perpustakaan > Data Pengembalian > ', nama)
                             print('------------------------------------------------------------------------')
