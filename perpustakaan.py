@@ -11,7 +11,7 @@ class Menu():
 
     def kembali(): # fungsi untuk kembali
         print("\n")
-        input("Tekan tombol apa saja untuk kembali...")
+        input("Tekan enter untuk kembali...")
         Menu.clear_screen()
 
     def getDate(): # untuk mendapatkan tanggal
