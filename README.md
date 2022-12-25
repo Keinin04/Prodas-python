@@ -3,6 +3,8 @@
 
 ## Tanggal Update 
 > Cara membaca update dari tanggal tersebut dibaca dari bawah ke atas
+25/12/2022
+- Selesai
 
 24/12/2022
 - Mengganti penamaan user dijadikan satu variable di menu Data Pengembalian. [link commit](https://github.com/Keinin04/Prodas-python/commit/62163837bf7a38a44e2f1f223ef7e3042add7a7a)
