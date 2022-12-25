@@ -485,6 +485,7 @@ class Buku():
                             Menu.kembali()
                             success = None
                             k = None
+                            done = True
 
                 except IndexError:
                     print('Pilih salah satu nomor diatas')
