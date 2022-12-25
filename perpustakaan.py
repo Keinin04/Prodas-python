@@ -27,9 +27,9 @@ class Menu():
             print(' 1  Data Buku')
             print(' 2  Data Peminjaman')
             print(' 3  Data Pengembalian')  
-            print(' 4  Keluar')
+            print(' q  Keluar')
             try:
-                p=int(input('pilih menu 1-6: '))
+                p=int(input('pilih menu 1-3 atau q: '))
                 print()
                 if p == 1:
                     Menu.clear_screen()
