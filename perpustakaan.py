@@ -674,6 +674,8 @@ class Buku():
         while success == False:
 
             while loop_data == False: # Pilih data yang ingin di ubah
+                print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                print('-----------------------------------------------------------')
                 Buku.menampilkan_buku()
                 try:
                     print('Masukan q untuk balik ke menu awal')
@@ -690,11 +692,14 @@ class Buku():
 
                     while loop_ubah == False:
                         Menu.clear_screen()
-                        print('Apa yang ingin diubah ?')
+                        print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                        print('-----------------------------------------------------------')
+                        print('====================================================================================================')
                         print('Masukan j untuk Judul : ' + judul_buku[data])
                         print('Masukan p untuk Pengarang : ' + pengarang[data])
                         print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
-                        print('Masukan q jika ingin balik ke menu awal')
+                        print('====================================================================================================')
+                        print('Masukan q jika ingin balik ke bekelakang')
                         ubah = str(input('Pilih apa yang diubah ?  : '))
 
                         if ubah == 'q':
@@ -706,6 +711,13 @@ class Buku():
 
                             while ubah == 'j':# Mengganti nama judul
                                 Menu.clear_screen()
+                                print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                                print('-----------------------------------------------------------')
+                                print('====================================================================================================')
+                                print('Masukan j untuk Judul : ' + judul_buku[data])
+                                print('Masukan p untuk Pengarang : ' + pengarang[data])
+                                print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
+                                print('====================================================================================================')
                                 print('Masukan q jika ingin balik ke menu awal')
                                 menjadi = input('Masukan nama judul baru : ')
 
@@ -716,6 +728,13 @@ class Buku():
 
                                 while(True): # Menanya benar atau tidak
                                     Menu.clear_screen()
+                                    print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                                    print('-----------------------------------------------------------')
+                                    print('====================================================================================================')
+                                    print('Masukan j untuk Judul : ' + judul_buku[data])
+                                    print('Masukan p untuk Pengarang : ' + pengarang[data])
+                                    print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
+                                    print('====================================================================================================')
                                     print('Apakah benar ingin nama judul ', judul_buku[data], ' ini menjadi ', menjadi,' ?')
                                     ask = input('y atau n : ')
                                     if ask == 'y':
@@ -739,6 +758,13 @@ class Buku():
 
                             while ubah == 'p':# Mengganti nama pengarang
                                 Menu.clear_screen()
+                                print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                                print('-----------------------------------------------------------')
+                                print('====================================================================================================')
+                                print('Masukan j untuk Judul : ' + judul_buku[data])
+                                print('Masukan p untuk Pengarang : ' + pengarang[data])
+                                print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
+                                print('====================================================================================================')
                                 print('Masukan q jika ingin balik ke menu awal')
                                 menjadi = input('Masukan nama pengarang baru : ')
 
@@ -749,6 +775,13 @@ class Buku():
 
                                 while(True): # Menanya benar atau tidak
                                     Menu.clear_screen()
+                                    print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                                    print('-----------------------------------------------------------')
+                                    print('====================================================================================================')
+                                    print('Masukan j untuk Judul : ' + judul_buku[data])
+                                    print('Masukan p untuk Pengarang : ' + pengarang[data])
+                                    print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
+                                    print('====================================================================================================')
                                     print('Apakah benar ingin nama pengarang ', pengarang[data], ' ini menjadi ', menjadi,' ?')
                                     ask = input('y atau n : ')
                                     if ask == 'y':
@@ -772,6 +805,13 @@ class Buku():
 
                             while ubah == 's':# Mengganti jumlah stok
                                 Menu.clear_screen()
+                                print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                                print('-----------------------------------------------------------')
+                                print('====================================================================================================')
+                                print('Masukan j untuk Judul : ' + judul_buku[data])
+                                print('Masukan p untuk Pengarang : ' + pengarang[data])
+                                print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
+                                print('====================================================================================================')
                                 try:
                                     print('Masukan q jika ingin balik ke menu awal')
                                     menjadi = input('Masukan jumlah stok baru : ')
@@ -789,6 +829,13 @@ class Buku():
 
                                 while(True): # Menanya benar atau tidak
                                     Menu.clear_screen()
+                                    print('     Menu Perpustakaan > Data Buku > Mengubah Data Buku')
+                                    print('-----------------------------------------------------------')
+                                    print('====================================================================================================')
+                                    print('Masukan j untuk Judul : ' + judul_buku[data])
+                                    print('Masukan p untuk Pengarang : ' + pengarang[data])
+                                    print('Masukan s untuk jumlah stok : ' + str(jumlah_stok[data]))
+                                    print('====================================================================================================')
                                     print('Apakah benar ingin jumlah stok buku ',judul_buku[data],' dari ', jumlah_stok[data], ' ini menjadi ', menjadi,' ?')
                                     ask = input('y atau n : ')
                                     if ask == 'y':
