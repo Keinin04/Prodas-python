@@ -30,11 +30,14 @@ class Menu():
             print(' q  Keluar')
             try:
                 print('')
-                p=int(input('pilih menu 1-3 atau q: '))
+                p = input('pilih menu 1-3 atau q: ')
                 if p == 'q':
                     Menu.clear_screen()
                     break
-                elif p == 1:
+                else:
+                    p = int(p)
+
+                if p == 1:
                     Menu.clear_screen()
                     Menu.menu_data_buku()
                 elif p == 2:
@@ -46,7 +49,7 @@ class Menu():
                     Buku.listPeminjam()
                     Buku.kembalikanBuku()
                 else:
-                    print('Masukkan pilihan sesuai nomor !')
+                    print('Masukkan pilihan sesuai perintah !')
                     Menu.kembali()
                     continue
             except ValueError:
