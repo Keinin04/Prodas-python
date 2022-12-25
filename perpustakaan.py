@@ -306,154 +306,161 @@ class Buku():
                 Menu.kembali()
 
     def kembalikanBuku(): # fungsi untuk mengembalikan buku yang dipinjam
-        while(True): # Memasukkan nama depan peminjam
+        done = False
+        while done == False: # Memasukkan nama depan peminjam
+            print('     Menu Perpustakaan > Data Pengembalian > ')
+            print('------------------------------------------')
             if Buku.menampilkan_peminjam() == 'kosong':
                 print('Tidak bisa melanjutkan karena data peminjaman kosong')
                 Menu.kembali()
                 break
             else:
-                print('Masukkan q  Untuk Balik Kebelakang')
+                print('Masukkan q Untuk Balik Kebelakang')
                 print('Pilih salah satu menu di diatas (masukkan nomor urutan):')
 
                 try:
-                    k = int(input(''))
-                    # MASIH BLM DI LANJUTIN
-                    nama_peminjam[k]
+                    k = input('')
+                    if k == 'q':
+                        Menu.clear_screen()
+                        break
+                    else:
+                        k = int(k)
 
-                    nama_peminjam.remove(nama_peminjam[k])
+                    nama = nama_peminjam[k] # Cek
 
-                    daftar_buku_dipinjam = buku_dipinjam[k].split(',') 
-                    for b in range(len(daftar_buku_dipinjam)):
-                        for i in range(len(judul_buku)):
-                            if daftar_buku_dipinjam[b] == judul_buku[i]:
-                                jumlah_stok[i] = int(jumlah_stok[i]) + 1
-                                jumlah_stok[i] = str(jumlah_stok[i])
-                                break
+                    # Denda
+                    tgl_peminjam = datetime.datetime.strptime(tanggal_dipinjam[k], '%Y-%m-%d')
+                    dua_minggu = tgl_peminjam + datetime.timedelta(weeks=2)
+                    today = datetime.datetime.strptime(Menu.getDate(), '%Y-%m-%d')
+                    if dua_minggu < today:
+                        denda = True
+                        diff = today - dua_minggu
+                        hari_keterlambatan = diff.days
+                        byr_denda = 500 * hari_keterlambatan
+                    else:
+                        denda = False
 
 
+                    while type(k) == int:
+                        Menu.clear_screen()
+                        print('     Menu Perpustakaan > Data Pengembalian > ', nama)
+                        print('------------------------------------------------------------------------')
+                        print('====================================================================================================')
+                        print('Nama Peminjam        : ', nama_peminjam[k])
+                        print('Buku dipinjam        : ',  ','.join(str(book) for book in buku_dipinjam[k]))
+                        print('Tanggal Peminjaman   : ', tanggal_dipinjam[k])
+                        print('Tanggal Pengembalian : ', Menu.getDate())
+                        print('====================================================================================================')
+                        print('Masukkan y untuk mengembalikkan buku')
+                        print('Masukkan q untuk balik kebelakang')
+                        u = str(input('Masukkan input : '))
+
+                        if u == 'y': # untuk melanjutkan pengembalian
+                            if denda == True: # tampilan denda
+                                while(True):
+                                    Menu.clear_screen()
+                                    print('     Menu Perpustakaan > Data Pengembalian > ', nama)
+                                    print('----------------------------------------------------------------')
+                                    print('====================================================================================================')
+                                    print('Nama Peminjam        : ', nama_peminjam[k])
+                                    print('Buku dipinjam        : ',  ','.join(str(book) for book in buku_dipinjam[k]))
+                                    print('Tanggal Peminjaman   : ', tanggal_dipinjam[k])
+                                    print('Tanggal Pengembalian : ', Menu.getDate())
+                                    print('Terlambat            : ', str(hari_keterlambatan), ' Hari')
+                                    print('Terkena Denda        : ', 'Rp',str(byr_denda))
+                                    print('====================================================================================================')
+                                    print('Masukkan q untuk balik kebelakang')
+                                    try:
+                                        byr = input('Masukkan nominal pembayaran : ')
+                                        if byr == 'q':
+                                            Menu.clear_screen()
+                                            break
+                                        else:
+                                            byr = int(byr)
+                                            if byr < byr_denda:
+                                                print('Nominal uang kurang !')
+                                                Menu.kembali()
+                                            else:
+                                                Menu.clear_screen()
+                                                total = byr_denda - byr
+                                                print('     Menu Perpustakaan > Data Pengembalian > ', nama)
+                                                print('----------------------------------------------------------------')
+                                                print('====================================================================================================')
+                                                print('Nama Peminjam        : ', nama_peminjam[k])
+                                                print('Buku dipinjam        : ',  ','.join(str(book) for book in buku_dipinjam[k]))
+                                                print('Tanggal Peminjaman   : ', tanggal_dipinjam[k])
+                                                print('Tanggal Pengembalian : ', Menu.getDate())
+                                                print('Terlambat            : ', str(hari_keterlambatan), ' Hari')
+                                                print('Terkena Denda        : ', 'Rp',str(byr_denda))
+                                                print('Dibayar sebesar      : ', 'Rp',str(byr))
+                                                print('Sisa                 : ', 'Rp',str(total))
+                                                print('====================================================================================================')
+                                                denda = None
+                                                success = True
+                                                input('Masukkan apa saja untuk melanjutkan pengembalian buku')
+                                    except ValueError:
+                                        print('Masukkan sesuai perintah!')
+                                        Menu.kembali()
+                            else:
+                                Menu.clear_screen()
+                                success = True
+                            
+                        elif u == 'q': # untuk keluar
+                            Menu.clear_screen()
+                            break
+                        else:
+                            print('Masukkan sesuai perintah !')
+                            Menu.kembali()
+
+
+
+                        while success == True:
+                            # Mengembalikan buku ke list stok
+                            for y in range(len(buku_dipinjam[k])):
+                                for i in range(len(judul_buku)):
+                                    if buku_dipinjam[k][y] == judul_buku[i]:
+                                        jumlah_stok[i] = int(jumlah_stok[i]) + 1
+                                        jumlah_stok[i] = str(jumlah_stok[i])
+                                        break
+
+                            nama_peminjam.remove(nama_peminjam[k]) # Menghapus nama peminjam di data list
+                            buku_dipinjam.remove(buku_dipinjam[k]) # Menghpaus buku dari peminjam
+                            tanggal_dipinjam.remove(tanggal_dipinjam[k]) # Menghapus tanggal peminjam di data list
+
+                            with open(r'Data-Peminjaman.txt', 'r') as f: # Mencatat Data Peminjaman
+                                lines = f.readlines()
+                            del lines[k]
+
+                            with open(r'Data-Peminjaman.txt', 'w') as f: # Mencatat Data Peminjaman
+                                f.writelines(lines)
+                            f.close()
+                            os.truncate('Data-Peminjaman.txt', os.path.getsize('Data-Peminjaman.txt'))
+
+
+                            with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                for i in range(len(judul_buku)):
+                                    if i != len(judul_buku) - 1:
+                                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                                    else:
+                                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+
+                            print('     Menu Perpustakaan > Data Pengembalian > ', nama)
+                            print('------------------------------------------------------------------------')
+                            print('====================================================================================================')
+                            print('Pengembalian atas nama ' , nama, ' berhasil dilakukan.')
+                            print('====================================================================================================')
+                            
+                            Menu.kembali()
+                            success = None
+                            k = None
 
                 except IndexError:
                     print('Pilih salah satu nomor diatas')
                     Menu.kembali()
+                except ValueError:
+                    print('Masukkan nomor dari daftar Peminjam')
+                    Menu.kembali()
 
-                
-
-
-            
-            
-        try:
-            with open(a,'r') as f:
-                data = f.read()
-
-        except:
-            print('Nama tersebut tidak ada')
-            Menu.kembali()
-            Buku.kembalikanBuku()
-        
-        
-        d = 'Data-Pengembalian-'+Menu.getDate()+'.txt'
-
-        count = 1
-        buku = 0
-        buku_dikembali = []
-        for i in range(len(judul_buku)): # Menghitung buku yang dipinjam 
-            if judul_buku[i] in data:
-                buku_dikembali.append(judul_buku[i])
-                with open(b,'a') as f:
-                    f.write(str(count)+ '.' + '\t\t' + judul_buku[i] + '\n')
-                    count+=1
-                buku += 1
-            
-        with open(b,'a') as f:# Menulis banyaknya buku dipinjam ke file pengembalian
-            f.write("\nBanyak buku dipinjam: "+ str(buku)) 
-        
-        with open(b,'r') as f:# Menampilkan file Pengembalian
-            peminjaman = f.read()
-        
-        lewat = True
-        while lewat == True: # untuk menanyakan apakah ada denda 
-            Menu.clear_screen()
-            print(peminjaman)
-            success = False
-            denda = input('Apakah buku melewati batas peminjaman? [y/n]: ')
-
-            if denda == 'y':# Jika terkena denda
-                with open(b, 'a') as f:
-                    f.write('\nTerkena denda : ya')
-
-                while denda == 'y':# Melanjutkan menanyakan pertanyaan lain berapa hari keterlambatan
-                    Menu.clear_screen()
-                    with open(b, 'r') as f:
-                        print(f.read())
-
-                    print('Berapa hari keterlambatan ? [contoh masukan 1 untuk satu hari]')
-                    try:
-                        hari = int(input())
-                        jumlah = (buku * 500)+(hari * 500) 
-                        with open(b, 'a') as f:
-                            f.write('\nBanyaknya hari dilewati : ' + str(hari))
-                            f.write('\nDenda yang harus dibayar sebesar : Rp' + str(jumlah))
-
-                        while(True): # Memasukan nominal pembayaran
-                            Menu.clear_screen()
-                            with open(b, 'r') as f:
-                                print(f.read())
-                            try:
-                                bayar = int(input("Masukan nominal pembayaran : Rp"))
-                                if bayar < jumlah:
-                                    print('Maaf nominal anda kurang')
-                                    Menu.kembali()
-                                else:
-                                    total = bayar - jumlah
-                                    with open(b, 'a') as f:
-                                        f.write('\nDibayar sebesar : Rp' + str(bayar))
-                                        f.write('\nKembalian : Rp' + str(total))
-
-                                    denda = None
-                                    lewat = False
-                                    success = True
-                                    break
-                            except ValueError:
-                                print('Masukan nominal pembayaran sesuai angka')
-                                Menu.kembali()
-                    except ValueError:
-                        print('Masukan jumlah hari dalam angka saja')
-                        Menu.kembali()
-
-            elif denda == 'n':# Jika tidak terkena denda
-                with open(b, 'a') as f:
-                    f.write('\nTerkena denda : Tidak')
-                lewat = False
-                success = True
-            else:
-                print('Masukan y atau n saja')
-                Menu.kembali()
-
-
-
-
-        while(success == True):# Dijalankan ketika sudah memenuhi
-            Menu.clear_screen()
-            for p in range(len(judul_buku)): # Memperbarui stok di list 
-                if judul_buku[p] in data:
-                    jumlah_stok[p] = int(jumlah_stok[p]) + 1 
-                    jumlah_stok[p] = str(jumlah_stok[p])
-
-            with open(r'Buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
-                for i in range(len(judul_buku)):
-                    if i != len(judul_buku) - 1:
-                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
-                    else:
-                        f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
-
-            with open(d, 'a+') as f: # Mencatat Data Pengembalian
-                f.write(Menu.getTime() + ' - ' + Name +  ' telah mengembalikan Buku : ' + ','.join(str(x) for x in buku_dikembali) + '\n')
-            
-            with open(b, 'r') as f:# Menampilkan hasil pengembalian
-                hasil = f.read()
-                print(hasil)
-                Menu.kembali()
-                break
         
     def tambah():# Untuk menambah data Buku
         loop_judul = False
