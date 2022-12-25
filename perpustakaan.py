@@ -335,7 +335,7 @@ class Buku():
         done = False
         while done == False: # Memasukkan nama depan peminjam
             print('     Menu Perpustakaan > Data Pengembalian > ')
-            print('------------------------------------------')
+            print('----------------------------------------------')
             if Buku.menampilkan_peminjam() == 'kosong':
                 print('Tidak bisa melanjutkan karena data peminjaman kosong')
                 Menu.kembali()
@@ -501,7 +501,7 @@ class Buku():
             while loop_judul == False:# Memasukan data judul buku
                     
                 print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('-----------------------------------------------------------')
+                print('--------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
@@ -513,7 +513,7 @@ class Buku():
 
                 while(True):# Menanyakan apakah yang di input sudah benar
                     print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                    print('-----------------------------------------------------------')
+                    print('--------------------------------------------------------------')
                     print('====================================================================================================')
                     print('Judul buku : ', judul)
                     print('Pengarang  : ', pengarang)
@@ -536,7 +536,7 @@ class Buku():
 
             while loop_pengarang== False:# Memasukan data buku si pengarang
                 print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('-----------------------------------------------------------')
+                print('--------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
@@ -570,7 +570,7 @@ class Buku():
 
             while loop_stok == False:# Memasukkan data buku stok
                 print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('-----------------------------------------------------------')
+                print('--------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
@@ -588,7 +588,7 @@ class Buku():
 
                 while(True):
                     print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                    print('-----------------------------------------------------------')
+                    print('--------------------------------------------------------------')
                     print('====================================================================================================')
                     print('Judul buku : ', judul)
                     print('Pengarang  : ', pengarang)
@@ -613,7 +613,7 @@ class Buku():
             while(True): # Bertanya apakah data yang dimasukan sudah benar?
                 Menu.clear_screen()
                 print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('-----------------------------------------------------------')
+                print('--------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
@@ -640,7 +640,7 @@ class Buku():
 
             while wrong == True: # mengecek apa yang salah
                 print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('-----------------------------------------------------------')
+                print('--------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Apa yang salah?')
                 print('Masukan j untuk Judul     : ' + judul)
