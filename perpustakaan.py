@@ -149,7 +149,7 @@ class Buku():
                     if ind == 0:
                         nama_peminjam.append(a)
                     if ind == 1:
-                        buku_dipinjam.append(a)
+                        buku_dipinjam.append(a.split(','))
                     if ind == 2:
                         tanggal_dipinjam.append(a)
                     ind+=1
@@ -171,7 +171,7 @@ class Buku():
     def menampilkan_peminjam():
         peminjam = {
             'Nama Peminjam' : nama_peminjam,
-            'Buku dipinjam' : buku_dipinjam,
+            'Buku dipinjam' : [','.join(map(str,book)) for book in buku_dipinjam],
             'Tanggal' : tanggal_dipinjam
         }
 
