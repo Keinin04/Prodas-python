@@ -270,9 +270,8 @@ class Buku():
                                     break
                                 elif option_buku == 'n':
                                     Menu.clear_screen() 
-                                    Menu.kembali()
 
-                                    with open(d, 'r+') as f: # Mencatat Data Peminjaman
+                                    with open(d, 'a+') as f: # Mencatat Data Peminjaman
                                         f.write(Name +  '.' + ','.join(str(x) for x in buku_dipinjam) + '.' + Menu.getDate() + '\n')
 
                                     with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
@@ -284,7 +283,7 @@ class Buku():
 
                                     print('Data Peminjaman ' + Name + ' sudah tersimpan')
 
-
+                                    Menu.kembali()
                                     success = True
                                     break
                                 else:
