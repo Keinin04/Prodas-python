@@ -502,28 +502,68 @@ class Buku():
         loop_judul = False
         loop_pengarang = False
         loop_stok = False
+        wrong = None
         success = False
 
-        judul = None
-        pengarang = None
-        stok = None
+        judul = ''
+        pengarang = ''
+        stok = ''
         while success == False:# perulangan identifikasi data
             while loop_judul == False:# Memasukan data judul buku
                     
-                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('--------------------------------------------------------------')
+                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul')
+                print('--------------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
                 print('Stok       : ', stok)
                 print('====================================================================================================')
-                judul = input("Masukkan judul Buku : ")
+                print("Masukkan q untuk balik ke kebelakang")
+                print("Masukkan Judul Buku baru")
+                masukkan = input('Masukkan input : ')
 
-                Menu.clear_screen()
+                if masukkan == 'q':
+                    Menu.clear_screen()
+                    if judul and pengarang and stok:
+                        loop_judul = True
+                        break
+                    if judul:
+                        loop_judul = True
+                    else:
+                        loop_judul = None
+                        success = None
+                    
+                    if pengarang:
+                        loop_pengarang = True
+                    else:
+                        loop_pengarang = None
+                        success = None
+                    
+                    if stok:
+                        loop_stok = True
+                    else:
+                        loop_stok = None
+                        success = None
+
+                    masukkan = ''
+                    break
+                else:
+                    if masukkan.isspace() or masukkan == '':
+                        print('Jangan dikosongkan !')
+                        Menu.kembali()
+                        continue
+                    else:
+                        if not pengarang:
+                            loop_pengarang = False
+                        if not stok:
+                            loop_pengarang = False
+                        judul = masukkan 
+                    masukkan = ''
+                    Menu.clear_screen()
 
                 while(True):# Menanyakan apakah yang di input sudah benar
-                    print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                    print('--------------------------------------------------------------')
+                    print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul')
+                    print('--------------------------------------------------------------------')
                     print('====================================================================================================')
                     print('Judul buku : ', judul)
                     print('Pengarang  : ', pengarang)
@@ -536,7 +576,7 @@ class Buku():
                         Menu.clear_screen()
                         break
                     elif q == 'n':
-                        judul = None
+                        judul = ''
                         Menu.clear_screen()
                         break
                     else:
@@ -545,19 +585,59 @@ class Buku():
                         continue
 
             while loop_pengarang== False:# Memasukan data buku si pengarang
-                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('--------------------------------------------------------------')
+                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul > pengarang')
+                print('--------------------------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
                 print('Stok       : ', stok)
                 print('====================================================================================================')
-                pengarang = input("Masukkan nama Pengarang : ")
-                Menu.clear_screen()
+                print("Masukkan q untuk balik ke kebelakang")
+                print("Masukkan nama Pengarang")
+                masukkan = input('Masukkan input : ')
+
+                if masukkan == 'q':
+                    Menu.clear_screen()
+                    if judul and pengarang and stok:
+                        loop_pengarang = True
+                        break
+
+                    if judul:
+                        loop_judul = False
+                        success = False
+                        judul = ''
+                    else:
+                        loop_judul = None
+                        success = None
+                    
+                    if pengarang:
+                        loop_pengarang = True
+                        success = False
+                    else:
+                        loop_pengarang = False
+                    
+                    if not stok:
+                        loop_stok = True
+
+                    
+                    
+                    masukkan = ''
+                    break
+                else:
+                    if masukkan.isspace() or masukkan == '':
+                        print('Jangan dikosongkan !')
+                        Menu.kembali()
+                        continue
+                    else:
+                        if not stok:
+                            loop_stok = False
+                        pengarang = masukkan 
+                    masukkan = ''
+                    Menu.clear_screen()
 
                 while(True):# Menanyakan apakah memasukan pengarang itu sudah benar  
-                    print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                    print('-----------------------------------------------------------')
+                    print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul > pengarang')
+                    print('---------------------------------------------------------------------------------')
                     print('====================================================================================================')
                     print('Judul buku : ', judul)
                     print('Pengarang  : ', pengarang)
@@ -570,7 +650,7 @@ class Buku():
                         Menu.clear_screen()
                         break
                     elif q == 'n':
-                        pengarang = None
+                        pengarang = ''
                         Menu.clear_screen()
                         break
                     else:
@@ -579,15 +659,50 @@ class Buku():
                         continue
 
             while loop_stok == False:# Memasukkan data buku stok
-                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('--------------------------------------------------------------')
+                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul > pengarang > stok')
+                print('-------------------------------------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
                 print('Stok       : ', stok)
                 print('====================================================================================================')
+                print("Masukkan q untuk balik ke kebelakang")
+                print('Masukkan jumlah stok baru')
                 try:
-                    stok = int(input("Masukkan jumlah Stok : "))
+                    masukkan = input("Masukkan input: ")
+                    if masukkan == 'q':
+                        Menu.clear_screen()
+                        if judul and pengarang and stok:
+                            loop_stok = True
+                            break
+
+                        if judul:
+                            loop_judul = True
+                        else:
+                            loop_judul = None
+                        
+                        if pengarang:
+                            loop_pengarang = False
+                            success = False
+                            pengarang = ''
+                        else:
+                            loop_pengarang = False
+                        
+                        if stok:
+                            loop_stok = True
+                        else:
+                            loop_stok = None
+
+                        masukkan = ''
+                        break
+                    else:
+                        if masukkan.isspace() or masukkan == '':
+                            print('Jangan dikosongkan !')
+                            Menu.kembali()
+                            continue
+                        else:
+                            stok = int(masukkan)
+                    masukkan = ''
                     Menu.clear_screen()
                 except ValueError:
                     print('')
@@ -596,9 +711,9 @@ class Buku():
                     continue
 
 
-                while(True):
-                    print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                    print('--------------------------------------------------------------')
+                while(True): # Menanyakan apakah yang di input sudah benar
+                    print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul > pengarang > stok')
+                    print('-----------------------------------------------------------------------------------------------')
                     print('====================================================================================================')
                     print('Judul buku : ', judul)
                     print('Pengarang  : ', pengarang)
@@ -611,7 +726,7 @@ class Buku():
                         Menu.clear_screen()
                         break
                     elif q == 'n':
-                        stok = None
+                        stok = ''
                         Menu.clear_screen()
                         break
                     else:
@@ -620,16 +735,17 @@ class Buku():
                         continue
             
             
-            while(True): # Bertanya apakah data yang dimasukan sudah benar?
+            while judul and pengarang and stok: # Bertanya apakah data yang dimasukan sudah benar?
                 Menu.clear_screen()
-                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
-                print('--------------------------------------------------------------')
+                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul > pengarang > stok > ')
+                print('------------------------------------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Judul buku : ', judul)
                 print('Pengarang  : ', pengarang)
                 print('Stok       : ', stok)
                 print('====================================================================================================')
                 print('Apakah Data Buku yang di masukkan tersebut sudah benar?')
+                print("Masukkan q untuk balik ke kebelakang")
                 q = input('y atau n ? : ')
                 if q == 'y':
                     with open(r'buku.txt', 'a') as f:
@@ -643,13 +759,19 @@ class Buku():
                     wrong = True
                     Menu.clear_screen()
                     break
+                elif q == 'q':
+                    if stok:
+                        loop_stok = False
+                        stok = ''
+                        Menu.clear_screen()
+                        break
                 else:
                     print('y atau n saja')
                     Menu.kembali()
                     continue
 
             while wrong == True: # mengecek apa yang salah
-                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku')
+                print('     Menu Perpustakaan > Data Buku > Menambahkan Data Buku > judul > pengarang > stok > salah')
                 print('--------------------------------------------------------------')
                 print('====================================================================================================')
                 print('Apa yang salah?')
@@ -657,7 +779,8 @@ class Buku():
                 print('Masukan p untuk Pengarang : ' + pengarang)
                 print('Masukan s untuk stok      : ' + str(stok))
                 print('====================================================================================================')
-                ask = input('Masukkan input [j/p/s] ? : ')
+                print('Masukkan q untuk balik kebelakang')
+                ask = input('Masukkan input [j/p/s] ?  : ')
                 if ask == 'j':
                     loop_judul = False
                     wrong = False
@@ -670,6 +793,10 @@ class Buku():
                     break
                 elif ask == 's':
                     loop_stok = False
+                    wrong = False
+                    Menu.clear_screen()
+                    break
+                elif ask == 'q':
                     wrong = False
                     Menu.clear_screen()
                     break
