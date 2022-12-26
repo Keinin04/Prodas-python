@@ -289,6 +289,12 @@ class Buku():
                     if a == 'q':
                         success = None
                         loopName = False
+                        if buku_dipinjam:
+                            for book in buku_dipinjam:
+                                index = judul_buku.index(book)
+                                jumlah_stok[index] = int(jumlah_stok[index]) +1
+                                jumlah_stok[index] = str(jumlah_stok[index])
+
                         Menu.clear_screen()
                         break
                     else:
@@ -319,6 +325,7 @@ class Buku():
                                         break
                                     elif option_buku == 'n':
                                         Menu.clear_screen() 
+
 
                                         with open(d, 'a+') as f: # Mencatat Data Peminjaman
                                             f.write(Name +  '.' + ','.join(str(x) for x in buku_dipinjam) + '.' + Menu.getDate() + '\n')
