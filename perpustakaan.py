@@ -220,124 +220,147 @@ class Buku():
 
         # Memulai memasukkan nama peminjam
         loopName = False
-        while loopName == False: # Memulai menginput nama
-
-            while(True): # Memasukkan nama depan peminjam
+        success = None
+        loopMinjam = False
+        while loopMinjam == False:
+            while loopName == False: # Memulai menginput nama
                 print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
                 print('--------------------------------------------------------------------------')
-                Name = input('Masukkan nama peminjam: ')
-                check_name = Name.replace(' ', '')
-                if check_name.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
-                    Menu.clear_screen()
-                    break
-                else:
-                    print('')
-                    print('Masukkan huruf alphabet')
-                    Menu.kembali()
-
-            while(True):
-                Menu.clear_screen
-                print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
-                print('--------------------------------------------------------------------------')
-                print('Apakah nama ' + Name +  ' ini sudah benar?')
-                option_name = input('y atau n ? ')
-                if option_name  == 'y':
+                print('====================================================================================================')
+                print('Nama Peminjam: ')
+                print('====================================================================================================')
+                print('Masukkan q untuk balik kebelakang')
+                print('Masukkan nama untuk Peminjam')
+                Name = input('Masukkan input : ')
+                if Name == 'q':
                     loopName = True
-                    Menu.clear_screen()
-                    break
-                elif option_name == 'n':
+                    loopMinjam = None
                     Menu.clear_screen()
                     break
                 else:
-                    print('Masukkan y atau n saja')
-                    Menu.kembali()
-
-        # Memasukkan nama peminjam ke file data peminjaman txt
-        d = 'Data-Peminjaman.txt'
-
-
-
-
-        # Memulai mencari buku untuk di pinjam
-        success = False
-        buku_dipinjam = []
-        while success == False: # Perulangan meminjam buku
-            print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
-            print('---------------------------------------------------------------------------')
-            print('====================================================================================================')
-            print('     Nama Peminjam : ' + Name)
-            Buku.menampilkan_buku() # Menampilkan daftar buku
-            print('Buku yang dipinjam = ' + ','.join(str(x) for x in buku_dipinjam))
-            print('Pilih salah satu menu di diatas (masukkan nomor urutan):')
-            try:
-                a = int(input())
-                try:
-                    if (int(jumlah_stok[a])>0): # Mengecek apakah stok tersebut tersedia
-                        print('Buku Tersedia')
-                        
-                        if judul_buku[a]  not in buku_dipinjam: # Mengecek apakah buku tersebut belum minjam, jika lebih dari 1 maka tidak bisa
-                            buku_dipinjam.append(judul_buku[a])
-                            
-                            jumlah_stok[a] = int(jumlah_stok[a]) - 1
-                            jumlah_stok[a] = str(jumlah_stok[a])
-
-                            
-                            while(True): # menanyakan apakah ingin meminjam buku lain lagi
-                                Menu.clear_screen()
-                                print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
-                                print('---------------------------------------------------------------------------')
-                                print('====================================================================================================')
-                                print('     Nama Peminjam : ' + Name)
-                                Buku.menampilkan_buku() # Menampilkan daftar buku
-                                print('Buku yang dipinjam = ' + ','.join(str(x) for x in buku_dipinjam))
-                                option_buku = input('Apakah ingin meminjam buku lain lagi ? [y/n] ')
-                                if option_buku == 'y':
-                                    Menu.clear_screen()
-                                    success = False
-                                    break
-                                elif option_buku == 'n':
-                                    Menu.clear_screen() 
-
-                                    with open(d, 'a+') as f: # Mencatat Data Peminjaman
-                                        f.write(Name +  '.' + ','.join(str(x) for x in buku_dipinjam) + '.' + Menu.getDate() + '\n')
-
-                                    with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
-                                        for i in range(len(judul_buku)):
-                                            if i != len(judul_buku) - 1:
-                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
-                                            else:
-                                                f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
-
-                                    print('Data Peminjaman ' + Name + ' sudah tersimpan')
-                                    print('     Menu Perpustakaan > Data Pengembalian > ', Name)
-                                    print('------------------------------------------------------------------------')
-                                    print('====================================================================================================')
-                                    print('Data Peminjaman ' + Name + ' sudah tersimpan')
-                                    print('====================================================================================================')
-
-                                    Menu.kembali()
-                                    success = True
-                                    break
-                                else:
-                                    print('Masukan y atau n saja')
-                                    Menu.kembali()
-                        else:
-                            print('Maaf tidak bisa meminjam lebih dari 1 buku yang sama')
-                            Menu.kembali()
-
+                    check_name = Name.replace(' ', '')
+                    if check_name.isalpha(): # akan dijalankan jika type datanya str huruf alphabet
+                        Menu.clear_screen()
                     else:
-                        print('Buku tidak tersedia')
+                        print('')
+                        print('Masukkan huruf alphabet')
                         Menu.kembali()
-                        continue
-                
-                except IndexError:
+                        break
+
+                while(True):
+                    Menu.clear_screen
+                    print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
+                    print('--------------------------------------------------------------------------')
+                    print('====================================================================================================')
+                    print('Apakah nama ' + Name +  ' ini sudah benar?')
+                    print('====================================================================================================')
+                    option_name = input('y atau n ? : ')
+                    if option_name  == 'y':
+                        loopName = True
+                        success = False
+                        Menu.clear_screen()
+                        break
+                    elif option_name == 'n':
+                        Menu.clear_screen()
+                        break
+                    else:
+                        print('Masukkan y atau n saja')
+                        Menu.kembali()
+
+            # Memasukkan nama peminjam ke file data peminjaman txt
+
+
+
+
+            # Memulai mencari buku untuk di pinjam
+            buku_dipinjam = []
+            d = 'Data-Peminjaman.txt'
+            while success == False: # Perulangan meminjam buku
+                print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
+                print('---------------------------------------------------------------------------')
+                print('====================================================================================================')
+                print('     Nama Peminjam : ' + Name)
+                Buku.menampilkan_buku() # Menampilkan daftar buku
+                print('Buku yang dipinjam = ' + ','.join(str(x) for x in buku_dipinjam))
+                print('Masukkan q untuk balik ke belakang')
+                print('Pilih salah satu menu di diatas (masukkan nomor urutan):')
+                try:
+                    a = (input())
+                    if a == 'q':
+                        success = None
+                        loopName = False
+                        Menu.clear_screen()
+                        break
+                    else:
+                        a = int(a)
+                    try:
+                        if (int(jumlah_stok[a])>0): # Mengecek apakah stok tersebut tersedia
+                            print('Buku Tersedia')
+                            
+                            if judul_buku[a]  not in buku_dipinjam: # Mengecek apakah buku tersebut belum minjam, jika lebih dari 1 maka tidak bisa
+                                buku_dipinjam.append(judul_buku[a])
+                                
+                                jumlah_stok[a] = int(jumlah_stok[a]) - 1
+                                jumlah_stok[a] = str(jumlah_stok[a])
+
+                                
+                                while(True): # menanyakan apakah ingin meminjam buku lain lagi
+                                    Menu.clear_screen()
+                                    print('     Menu Perpustakaan > Data Peminjaman >  Menambahkan Data Peminjaman')
+                                    print('---------------------------------------------------------------------------')
+                                    print('====================================================================================================')
+                                    print('     Nama Peminjam : ' + Name)
+                                    Buku.menampilkan_buku() # Menampilkan daftar buku
+                                    print('Buku yang dipinjam = ' + ','.join(str(x) for x in buku_dipinjam))
+                                    option_buku = input('Apakah ingin meminjam buku lain lagi ? [y/n] ')
+                                    if option_buku == 'y':
+                                        Menu.clear_screen()
+                                        success = False
+                                        break
+                                    elif option_buku == 'n':
+                                        Menu.clear_screen() 
+
+                                        with open(d, 'a+') as f: # Mencatat Data Peminjaman
+                                            f.write(Name +  '.' + ','.join(str(x) for x in buku_dipinjam) + '.' + Menu.getDate() + '\n')
+
+                                        with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                            for i in range(len(judul_buku)):
+                                                if i != len(judul_buku) - 1:
+                                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
+                                                else:
+                                                    f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
+
+                                        print('Data Peminjaman ' + Name + ' sudah tersimpan')
+                                        print('     Menu Perpustakaan > Data Pengembalian > ', Name)
+                                        print('------------------------------------------------------------------------')
+                                        print('====================================================================================================')
+                                        print('Data Peminjaman ' + Name + ' sudah tersimpan')
+                                        print('====================================================================================================')
+
+                                        Menu.kembali()
+                                        success = True
+                                        loopMinjam = True
+                                        break
+                                    else:
+                                        print('Masukan y atau n saja')
+                                        Menu.kembali()
+                            else:
+                                print('Maaf tidak bisa meminjam lebih dari 1 buku yang sama')
+                                Menu.kembali()
+
+                        else:
+                            print('Buku tidak tersedia')
+                            Menu.kembali()
+                            continue
+                    
+                    except IndexError:
+                        print('')
+                        print('pilih buku sesuai nomor')
+                        Menu.kembali()
+                except ValueError:
                     print('')
-                    print('pilih buku sesuai nomor')
+                    print('Pilih sesuai nomor')
                     Menu.kembali()
-            except ValueError:
-                print('')
-                print('Pilih sesuai nomor')
-                Menu.kembali()
 
     def kembalikanBuku(): # fungsi untuk mengembalikan buku yang dipinjam
         done = False
