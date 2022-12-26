@@ -883,6 +883,7 @@ class Buku():
 
                                 if menjadi == 'q':
                                     ubah = None
+                                    menjadi = None
                                     Menu.clear_screen()
                                     break
 
@@ -899,13 +900,14 @@ class Buku():
                                     ask = input('y atau n : ')
                                     if ask == 'y':
                                         judul_buku[data] = menjadi
-                                        with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                        with open(r'buku.txt', 'w+') as f: # Memperbarui isi file buku.txt pada listBuku
                                             for i in range(len(judul_buku)):
                                                 if i != len(judul_buku) - 1:
                                                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                                                 else:
                                                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                                         ubah = None
+                                        menjadi = None
                                         break
                                     elif ask == 'n':
                                         Menu.clear_screen()
@@ -930,6 +932,7 @@ class Buku():
 
                                 if menjadi == 'q':
                                     ubah = None
+                                    menjadi = None
                                     Menu.clear_screen()
                                     break
 
@@ -946,13 +949,14 @@ class Buku():
                                     ask = input('y atau n : ')
                                     if ask == 'y':
                                         pengarang[data] = menjadi
-                                        with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                        with open(r'buku.txt', 'w+') as f: # Memperbarui isi file buku.txt pada listBuku
                                             for i in range(len(judul_buku)):
                                                 if i != len(judul_buku) - 1:
                                                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                                                 else:
                                                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                                         ubah = None
+                                        menjadi = None
                                         break
                                     elif ask == 'n':
                                         Menu.clear_screen()
@@ -977,6 +981,7 @@ class Buku():
                                     menjadi = input('Masukan jumlah stok baru : ')
                                     if menjadi == 'q':
                                         ubah = None
+                                        menjadi = None
                                         Menu.clear_screen()
                                         break
                                     else:
@@ -1000,13 +1005,14 @@ class Buku():
                                     ask = input('y atau n : ')
                                     if ask == 'y':
                                         jumlah_stok[data] = str(menjadi)
-                                        with open(r'buku.txt', 'r+') as f: # Memperbarui isi file buku.txt pada listBuku
+                                        with open(r'buku.txt', 'w+') as f: # Memperbarui isi file buku.txt pada listBuku
                                             for i in range(len(judul_buku)):
                                                 if i != len(judul_buku) - 1:
                                                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]) + '\n')
                                                 else:
                                                     f.write(judul_buku[i] + ',' + pengarang[i] + ',' + str(jumlah_stok[i]))
                                         ubah = None
+                                        menjadi = None
                                         break
                                     elif ask == 'n':
                                         Menu.clear_screen()
